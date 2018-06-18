@@ -1,12 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Lane : MonoBehaviour
 {
     [SerializeField]
-    public Transform Start;
+    public Transform Midpoint;
 
     [SerializeField]
     public Transform End;
+
+    public Transform Start
+    {
+        get
+        {
+            return transform;
+        }
+    }
 }
