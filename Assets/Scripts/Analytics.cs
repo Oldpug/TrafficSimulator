@@ -1,21 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class scriptCami : MonoBehaviour {
+public class Analytics : MonoBehaviour {
+
+    [SerializeField]
+    private Text text;
 
     [SerializeField] 
     private Rigidbody Car; //luam viteza din rigibody
-    float suma; //suma tuturor vitezelor
-    float seconds;  //secundele
-    float average;  //media suma/timp
+    float suma;
+    float seconds; 
+    float average;  
         void Update()
         {
-        suma += Car.velocity.magnitude; //car e vector 3 nu returneaza int sau float, deci folosim magnitude 
-        seconds += Time.deltaTime; //este o functie time care ia secunde
+        suma += Car.velocity.magnitude; //velocity e vector 3 nu returneaza int sau float, that's why we use magnitude 
+        seconds += Time.deltaTime; 
         average = suma / seconds;
-        Debug.Log(average); //afisam in consola sa vedem daca merge
+        text.text = average.ToString();
         }
+
     }
 
 
