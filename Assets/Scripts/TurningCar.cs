@@ -1,49 +1,70 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using TrafficSimulator;
 using UnityEngine;
 
 public class TurningCar : MonoBehaviour
 {
     [SerializeField]
-    float _speed = 0.5f;
+    private float speed = 0.75f;
 
-    Rigidbody _body;
+    [SerializeField]
+    private float tDelta = 0.0075f;
 
-    bool _isTurning;
+    private float t = 1f;
 
-    Transform _from, _to;
+    private Lane lane;
 
-    void _rotate()
+    private Rigidbody rigidBody;
+
+    private void MoveForward()
     {
-        _body.MoveRotation(Quaternion.Lerp(_from.rotation, _to.rotation, Time.time * _speed));
+        rigidBody.AddForce(transform.forward * speed);
     }
 
-    public void Start()
+    private void Turn()
     {
-        _body = GetComponent<Rigidbody>();
+        rigidBody.MovePosition(Bezier.Lerp(lane.Start.position, lane.Midpoint.position, lane.End.position, t));
+        rigidBody.MoveRotation(Quaternion.Lerp(lane.Start.rotation, lane.End.rotation, t));
+
+        t += tDelta;
     }
 
-    public void OnTriggerEnter(Collider other)
+    private bool FinishedTurning()
     {
-        var lane = other.GetComponent<Lane>();
+        return t >= 1f;
+    }
 
-        if (lane == null)
-            return;
+    private void StopTurning()
+    {
+        rigidBody.velocity = Vector3.zero;
+        MoveForward();
+    }
 
-        _from = lane.Start;
-        _to = lane.End;
-        _isTurning = true;
+    public void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     public void FixedUpdate()
     {
-        if (_isTurning)
-            _rotate();
+        if (!FinishedTurning())
+        {
+            Turn();
 
-        if (_to != null && transform.rotation == _to.rotation)
-            _isTurning = false;
+            if (FinishedTurning())
+                StopTurning();
+        }
+        else
+            MoveForward();
+    }
 
-        _body.AddForce(transform.forward * _speed);
+    public void OnTriggerEnter(Collider other)
+    {
+        var newLane = other.GetComponent<Lane>();
+
+        if (newLane == null)
+            return;
+
+        lane = newLane;
+        t = tDelta;
     }
 }

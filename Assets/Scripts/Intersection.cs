@@ -6,6 +6,12 @@ using UnityEngine;
 public class Pair
 {
     public GameObject first, second;
+
+    public void HideIntersectionEntrances(bool isActive)
+    {
+        first.SetActive(isActive);
+        second.SetActive(isActive);
+    }
 }
 
 public class Intersection : MonoBehaviour
@@ -15,31 +21,23 @@ public class Intersection : MonoBehaviour
     private float switchCooldown;
     private float cooldown;
 
-    bool firstPair = true;
-    bool secondPair = false;
-
     [SerializeField]
-    private Pair horizontal;
-    [SerializeField]
-    private Pair vertical;
+    private Pair horizontal, vertical;
 
-    // Use this for initialization
+    bool isActive = true;
+
     void Start()
     {
         cooldown = switchCooldown;
-        horizontal.first.SetActive(firstPair);
-        horizontal.second.SetActive(firstPair);
-        vertical.first.SetActive(secondPair);
-        vertical.second.SetActive(secondPair);
+        horizontal.HideIntersectionEntrances(isActive);
+        vertical.HideIntersectionEntrances(!isActive);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (cooldown > 0)
         {
             cooldown -= Time.deltaTime;
-            Debug.Log(cooldown);
         }
         else
         {
@@ -50,12 +48,9 @@ public class Intersection : MonoBehaviour
 
     private void ChangeIntersection()
     {
-        firstPair = !firstPair;
-        horizontal.first.SetActive(firstPair);
-        horizontal.second.SetActive(firstPair);
+        isActive = !isActive;
 
-        secondPair = !secondPair;
-        vertical.first.SetActive(secondPair);
-        vertical.second.SetActive(secondPair);
+        horizontal.HideIntersectionEntrances(isActive);
+        vertical.HideIntersectionEntrances(!isActive);
     }
 }
