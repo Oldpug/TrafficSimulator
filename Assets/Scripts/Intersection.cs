@@ -5,10 +5,10 @@ public class Pair
 {
     public GameObject first, second;
 
-    public void HideIntersectionEntrances(bool isActive)
+    public void HideIntersectionEntrances(bool isHidden)
     {
-        first.SetActive(isActive);
-        second.SetActive(isActive);
+        first.SetActive(isHidden);
+        second.SetActive(isHidden);
     }
 }
 
@@ -22,13 +22,13 @@ public class Intersection : MonoBehaviour
     [SerializeField]
     private Pair horizontal, vertical;
 
-    bool isActive = true;
+    bool isHidden = false;
 
     void Start()
     {
         cooldown = switchCooldown;
-        horizontal.HideIntersectionEntrances(isActive);
-        vertical.HideIntersectionEntrances(!isActive);
+        horizontal.HideIntersectionEntrances(isHidden);
+        vertical.HideIntersectionEntrances(!isHidden);
     }
 
     void Update()
@@ -46,9 +46,9 @@ public class Intersection : MonoBehaviour
 
     private void ChangeIntersection()
     {
-        isActive = !isActive;
+        isHidden = !isHidden;
 
-        horizontal.HideIntersectionEntrances(isActive);
-        vertical.HideIntersectionEntrances(!isActive);
+        horizontal.HideIntersectionEntrances(isHidden);
+        vertical.HideIntersectionEntrances(!isHidden);
     }
 }
