@@ -5,8 +5,6 @@ public class Car2 : MonoBehaviour
     [SerializeField]
     float speed = 0.01f;
     [SerializeField]
-    float detectionRayLength = 1;
-    [SerializeField]
     private int steeringSpeed = 3;
 
     private int desiredRotation = 90;
