@@ -18,6 +18,7 @@ public class Analytics : MonoBehaviour {
 
     [SerializeField] 
     private Rigidbody Car; //luam viteza din rigibody
+
     float suma;
     float seconds; 
     float average;

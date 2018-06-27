@@ -1,18 +1,9 @@
 ﻿using UnityEngine;
 
-public class Lane : MonoBehaviour
-{
-    [SerializeField]
-    public Transform Midpoint;
+public class Lane : MonoBehaviour {
+  [SerializeField]
+  public Transform Begin;
 
-    [SerializeField]
-    public Transform End;
-
-    public Transform Start
-    {
-        get
-        {
-            return transform;
-        }
-    }
+  [SerializeField]
+  public Transform End;
 }

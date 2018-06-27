@@ -1,36 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 
 public class StopCar : MonoBehaviour
 {
     private Rigidbody body;
     private Car car;
-    public bool theCarIsStopped = false;
+    public bool IsStopped = false;
 
     private void Start()
     {
         body = GetComponent<Rigidbody>();
         car = GetComponent<Car>();
     }
+
     public void Button_Click()
     {
-        if (theCarIsStopped==true)
+        if (IsStopped == true)
         {
             car.enabled = true;
-            theCarIsStopped = false;
+            IsStopped = false;
         }
         else
         {
             body.velocity = Vector3.zero;
-            theCarIsStopped = true;
+            IsStopped = true;
             car.enabled = false;
         }
-       
-        
     }
-
 }
 
 

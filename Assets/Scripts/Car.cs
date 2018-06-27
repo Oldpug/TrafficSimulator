@@ -1,81 +1,88 @@
 ﻿using UnityEngine;
 
-public class Car : MonoBehaviour
-{
-    [SerializeField]
-    float speed = 0.01f;
-    [SerializeField]
-    float detectionRayLength = 1;
-    [SerializeField]
-    private int steeringSpeed = 3;
+public class Car : MonoBehaviour {
+  [SerializeField]
+  private float speed = 0.75f;
 
-    private int desiredRotation = 90;
-    private int currentRotation = 0;
-    private bool isTurning = false;
+  [SerializeField]
+  private float tDelta = 0.0075f;
 
-    private Rigidbody body;
+  [SerializeField]
+  private float obstacleDetectionDistance = 1f;
 
-    private void Start()
-    {
-        body = GetComponent<Rigidbody>();
+  private float t = 1f;
+
+  private Lane currentLane;
+
+  private Vector3 midpoint;
+
+  private Rigidbody rigidBody;
+
+  private bool IsTurning {
+    get {
+      return t < 1f;
     }
+  }
 
-    private void FixedUpdate()
-    {
-        if (isTurning)
-        {
-            Turn();
-        }
-        else if (IsFacingObstacle())
-        {
-            body.velocity = Vector3.zero;
-            isTurning = true;
-        }
-        else
-        {
-            MoveForward();
-        }
+  private bool IsFacingObstacle {
+    get {
+      RaycastHit hit;
+      bool isFacingObstacle = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, obstacleDetectionDistance, ~0, QueryTriggerInteraction.Ignore);
+
+      if (isFacingObstacle)
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+      else
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+
+      return isFacingObstacle;
     }
+  }
 
-    private void MoveForward()
-    {
-        body.AddForce(transform.forward * speed);
-    }
+  private void Awake() {
+    rigidBody = GetComponent<Rigidbody>();
+  }
 
-    private void Turn()
-    {
-        Rotate(steeringSpeed);
+  private void MoveForward() {
+    rigidBody.AddForce(transform.forward * speed);
+  }
 
-        if (currentRotation == desiredRotation)
-        {
-            isTurning = false;
-            currentRotation = 0;
-        }
-    }
+  private void Brake() {
+    //rigidBody.AddForce(transform.forward * (speed * -2));
+    rigidBody.velocity = Vector3.zero;
+  }
 
-    private void Rotate(int angle)
-    {
-        currentRotation += angle;
-        transform.Rotate(new Vector3(0, angle, 0));
-    }
+  private void Turn() {
+    rigidBody.MovePosition(Bezier.Lerp(currentLane.Begin.position, midpoint, currentLane.End.position, t));
+    rigidBody.MoveRotation(Quaternion.Lerp(currentLane.Begin.rotation, currentLane.End.rotation, t));
 
-    private bool IsFacingObstacle()
-    {
-        // Detect collisions with anything
-        int layerMask = ~0;
+    t += tDelta;
+  }
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, detectionRayLength, layerMask))
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+  private void StopTurning() {
+    rigidBody.velocity = Vector3.zero;
+    MoveForward();
+  }
 
-            return true;
-        }
-        else
-        {
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-        }
+  private void OnTriggerEnter(Collider other) {
+    Lane newLane = other.GetComponent<Lane>();
 
-        return false;
-    }
+    if (newLane == null)
+      return;
+
+    currentLane = newLane;
+    midpoint = Bezier.Midpoint(newLane.Begin, newLane.End);
+    t = tDelta;
+  }
+
+  private void FixedUpdate() {
+    if (IsFacingObstacle)
+      Brake();
+    else if (IsTurning) {
+      Turn();
+
+      if (!IsTurning)
+        StopTurning();
+    } else
+      MoveForward();
+  }
 }
