@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class Lane : MonoBehaviour {
-  [SerializeField]
-  public Transform Begin;
+public abstract class Lane : MonoBehaviour {
+  public abstract Transform End { get; }
 
-  [SerializeField]
-  public Transform End;
+  public abstract Lane Next { get; }
 }

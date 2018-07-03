@@ -15,6 +15,8 @@ public class Pair
 public class Intersection : MonoBehaviour
 {
 
+    public static readonly string StopperTag = "IntersectionStopper";
+
     [SerializeField]
     private float switchCooldown;
     private float cooldown;
