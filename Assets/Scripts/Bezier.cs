@@ -15,13 +15,14 @@ public static class Bezier {
 
     Vector3 endPos = end.position;
 
-    float angle = Vector3.Angle(endPos - beginPos, beginPos);
-    float distance = Vector3.Distance(beginPos, endPos) * Mathf.Cos(angle);
+    float angle = Vector3.Angle(beginPos, endPos - beginPos);
+    float distance = Vector3.Distance(beginPos, endPos) * Mathf.Cos(angle * Mathf.Deg2Rad);
 
     Vector3 midpoint = beginPos + distance * beginFwd;
 
-    var cube = Object.Instantiate(begin);
+    var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
     cube.transform.position = midpoint;
+    cube.transform.localScale = Vector3.one * 0.5f;
 
     return midpoint;
   }
