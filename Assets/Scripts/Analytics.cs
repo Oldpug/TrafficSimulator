@@ -16,6 +16,9 @@ public class Analytics : MonoBehaviour {
     [SerializeField]
     private Text text3;
 
+    [SerializeField]
+    private Text text4;
+
     [SerializeField] 
     private Rigidbody Car; //luam viteza din rigibody
 
@@ -23,23 +26,41 @@ public class Analytics : MonoBehaviour {
     float seconds; 
     float average;
     float still;
-        void Update()
+    float finaltimestill;
+    private void Start()
+    {
+        StartCoroutine(Watch());
+    }
+
+    private IEnumerator Watch()
+    {
+        while (true)
         {
-        suma += Car.velocity.magnitude; //velocity e vector 3 nu returneaza int sau float, that's why we use magnitude 
-        seconds += Time.deltaTime; 
-        average = suma / seconds;
-        text.text = "Av speed: " + average.ToString();
-        text1.text = "Speed:  " + Car.velocity.magnitude.ToString();
-        text2.text = "Total time: " + seconds.ToString();
-        if (Car.velocity.magnitude==0)
-        {
-            still += Time.deltaTime;
-            text3.text = "Standing still: " + still.ToString();
+            suma += Car.velocity.magnitude;
+            yield return new WaitForSeconds(1);
         }
-        else
+    }
+    void Update()
         {
-            still = 0;
-        }
+              
+            seconds += Time.deltaTime; 
+            average = suma / seconds;
+            text.text = "Av speed: " + average.ToString("0.##");
+            text1.text = "Speed:  " + Car.velocity.magnitude.ToString("0.##");
+            text2.text = "Total time: " + seconds.ToString("0.##");
+
+            if (Car.velocity.magnitude==0)
+            {
+                still += Time.deltaTime;
+                finaltimestill += Time.deltaTime;
+                text3.text = "Standing still: " + still.ToString("0.##");
+            }
+            else
+            {
+                still = 0;
+            }
+            // finaltimestill = Mathf.Round(finaltimestill * 100f) / 100f;
+            text4.text = "Total time still: " + finaltimestill.ToString("0.##");
         }
 
     }
