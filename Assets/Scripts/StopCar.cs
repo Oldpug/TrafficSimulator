@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class StopCar : MonoBehaviour
 {
+    [SerializeField]
+    private Text buttontext;
+
     private Rigidbody body;
     private Car car;
     public bool IsStopped = false;
@@ -16,11 +20,14 @@ public class StopCar : MonoBehaviour
     {
         if (IsStopped == true)
         {
+            buttontext.text = "Stop the car";
             car.enabled = true;
             IsStopped = false;
+            
         }
         else
         {
+            buttontext.text = "Start the car";
             body.velocity = Vector3.zero;
             IsStopped = true;
             car.enabled = false;
