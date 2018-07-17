@@ -12,7 +12,7 @@ public class Pair
     }
 }
 
-public class Intersection : MonoBehaviour
+public class TrafficLights : MonoBehaviour
 {
 
     public static readonly string StopperTag = "IntersectionStopper";
