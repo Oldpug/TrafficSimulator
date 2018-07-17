@@ -2,39 +2,55 @@
 
 public class Car : MonoBehaviour {
   [SerializeField]
-  private float speed = 0.75f;
+  private float speedLimit = 0.006f;
 
   [SerializeField]
-  private float tDelta = 0.0075f;
+  private float brakingSpeed = 0.0004f;
 
   [SerializeField]
   private float viewDistance = 1f;
 
   [SerializeField]
-  private float brakingSpeed = 0.1f;
+  private Lane lane;
 
-  private float t = 1f;
+  private float currentSpeed;
 
-  private Lane currentLane;
+  private float laneProgress;
 
-  private Vector3 turnBeginPos;
+  private Vector3 laneBeginPos;
 
-  private Quaternion turnBeginRot;
+  private Quaternion laneBeginRot;
 
-  private Vector3 turnMidpoint;
+  private Vector3 laneMidpoint;
 
-  private Rigidbody rigidBody;
-
-  private bool IsTurning {
+  public float SpeedLimit {
     get {
-      return t < 1f;
+      return speedLimit;
     }
   }
 
-  private bool IsFacingObstacle {
+  public float CurrentSpeed {
+    get {
+      return currentSpeed;
+    }
+  }
+
+  public float BrakingSpeed {
+    get {
+      return brakingSpeed;
+    }
+  }
+
+  public Lane Lane {
+    get {
+      return lane;
+    }
+  }
+
+  public bool IsFacingObstacle {
     get {
       RaycastHit hit;
-      bool isFacingObstacle = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Ignore);
+      bool isFacingObstacle = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);
 
       if (isFacingObstacle)
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -45,59 +61,61 @@ public class Car : MonoBehaviour {
     }
   }
 
-  private void Awake() {
-    rigidBody = GetComponent<Rigidbody>();
+  private void InitLane() {
+    if (lane == null)
+      return;
+
+    if (lane.End == null) {
+      lane = null;
+      return;
+    }
+
+    laneBeginPos = transform.position;
+    laneBeginRot = transform.rotation;
+
+    laneMidpoint = Bezier.Midpoint(transform, lane.End);
+    laneProgress = currentSpeed;
   }
 
-  private void MoveForward() {
-    rigidBody.AddForce(transform.forward * speed);
+  private void AdvanceLane() {
+    lane = lane.Next;
+    InitLane();
+  }
+
+  private void Move() {
+    if (lane == null)
+      return;
+
+    transform.position = Bezier.Lerp(laneBeginPos, laneMidpoint, lane.End.position, laneProgress);
+    transform.rotation = Quaternion.Lerp(laneBeginRot, lane.End.rotation, laneProgress);
+
+    laneProgress += currentSpeed * Time.timeScale;
+
+    if (laneProgress >= 1f) {
+      transform.position = lane.End.position;
+      transform.rotation = lane.End.rotation;
+      AdvanceLane();
+    }
   }
 
   private void Brake() {
-    rigidBody.drag += brakingSpeed;
+    currentSpeed = Mathf.Max(currentSpeed - brakingSpeed * Time.timeScale, 0);
   }
 
-  private void Turn() {
-    rigidBody.MovePosition(Bezier.Lerp(turnBeginPos, turnMidpoint, currentLane.End.position, t));
-    rigidBody.MoveRotation(Quaternion.Lerp(turnBeginRot, currentLane.End.rotation, t));
-
-    t += tDelta;
+  private void Accelerate() {
+    currentSpeed = Mathf.Min(currentSpeed + brakingSpeed * Time.timeScale, speedLimit);
   }
 
-  private void StopTurning() {
-    rigidBody.velocity = rigidBody.transform.forward;
-    MoveForward();
-  }
-
-  private void OnTriggerEnter(Collider collider) {
-    Lane newLane = collider.GetComponent<Lane>();
-
-    if (newLane == null)
-      return;
-
-    turnBeginPos = transform.position;
-    turnBeginRot = transform.rotation;
-
-    currentLane = newLane;
-    turnMidpoint = Bezier.Midpoint(transform, newLane.End);
-
-    t = tDelta;
-  }
-
-  private void OnTriggerStay(Collider collider) {
-    if (collider.tag == Intersection.StopperTag)
-      Brake();
+  private void Awake() {
+    InitLane();
   }
 
   private void FixedUpdate() {
     if (IsFacingObstacle)
       Brake();
-    else if (IsTurning) {
-      Turn();
+    else
+      Accelerate();
 
-      if (!IsTurning)
-        StopTurning();
-    } else
-      MoveForward();
+    Move();
   }
 }

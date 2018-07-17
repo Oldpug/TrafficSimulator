@@ -20,7 +20,7 @@ public static class Bezier {
 
     Vector3 midpoint = beginPos + distance * beginFwd;
 
-    var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+    var cube = Object.Instantiate(end);
     cube.transform.position = midpoint;
     cube.transform.localScale = Vector3.one * 0.5f;
 
