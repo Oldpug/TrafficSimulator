@@ -571,10 +571,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28295dc02333a6b46abe31ed93dcfb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedLimit: 0.006
-  brakingSpeed: 0.0004
-  viewDistance: 1
+  speedLimit: 0.5
+  brakingSpeed: 0.75
+  viewDistance: 1.5
   lane: {fileID: 1846417719}
+  currentSpeed: 0
 --- !u!4 &1648880646 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4260855850750412, guid: 31a864dd0b9bf2c49884c2c390c93bbe,

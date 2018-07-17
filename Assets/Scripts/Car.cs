@@ -2,17 +2,18 @@
 
 public class Car : MonoBehaviour {
   [SerializeField]
-  private float speedLimit = 0.006f;
+  private float speedLimit;
 
   [SerializeField]
-  private float brakingSpeed = 0.0004f;
+  private float brakingSpeed;
 
   [SerializeField]
-  private float viewDistance = 1f;
+  private float viewDistance;
 
   [SerializeField]
   private Lane lane;
 
+  [SerializeField]
   private float currentSpeed;
 
   private float laneProgress;
@@ -74,10 +75,13 @@ public class Car : MonoBehaviour {
     laneBeginRot = transform.rotation;
 
     laneMidpoint = Bezier.Midpoint(transform, lane.End);
-    laneProgress = currentSpeed;
+    laneProgress = 0;
   }
 
   private void AdvanceLane() {
+    transform.position = lane.End.position;
+    transform.rotation = lane.End.rotation;
+
     lane = lane.Next;
     InitLane();
   }
@@ -89,21 +93,18 @@ public class Car : MonoBehaviour {
     transform.position = Bezier.Lerp(laneBeginPos, laneMidpoint, lane.End.position, laneProgress);
     transform.rotation = Quaternion.Lerp(laneBeginRot, lane.End.rotation, laneProgress);
 
-    laneProgress += currentSpeed * Time.timeScale;
+    laneProgress += currentSpeed * Time.deltaTime;
 
-    if (laneProgress >= 1f) {
-      transform.position = lane.End.position;
-      transform.rotation = lane.End.rotation;
+    if (laneProgress >= 1f)
       AdvanceLane();
-    }
   }
 
   private void Brake() {
-    currentSpeed = Mathf.Max(currentSpeed - brakingSpeed * Time.timeScale, 0);
+    currentSpeed = Mathf.Max(currentSpeed - brakingSpeed * Time.deltaTime, 0);
   }
 
   private void Accelerate() {
-    currentSpeed = Mathf.Min(currentSpeed + brakingSpeed * Time.timeScale, speedLimit);
+    currentSpeed = Mathf.Min(currentSpeed + brakingSpeed * Time.deltaTime, speedLimit);
   }
 
   private void Awake() {
