@@ -8,20 +8,18 @@ public class IntersectionLane : Lane
     private List<Lane> possibleNextLanes = new List<Lane>();
     [SerializeField]
     private List<GameObject> possibleEndLanes = new List<GameObject>();
-    private int nextLaneIndex;
-    private int nextEndIndex;
+    private int nextIndex;
 
     private void Awake()
     {
-        nextLaneIndex = Random.Range(0, possibleNextLanes.Count);
-        nextEndIndex = Random.Range(0, possibleEndLanes.Count);
+        nextIndex = Random.Range(0, possibleNextLanes.Count);
     }
 
     public override Transform End
     {
         get
         {
-            return possibleEndLanes[nextEndIndex].transform;
+            return possibleEndLanes[nextIndex].transform;
         }
     }
 
@@ -30,7 +28,7 @@ public class IntersectionLane : Lane
         get
         {
             
-            return possibleNextLanes[nextLaneIndex];
+            return possibleNextLanes[nextIndex];
         }
     }
 }
