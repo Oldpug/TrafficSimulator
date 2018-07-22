@@ -23,7 +23,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionEntranceSouth
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -69,7 +69,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionLaneWestExit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -90,7 +90,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1253122164698546
 GameObject:
   m_ObjectHideFlags: 1
@@ -102,7 +102,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionLaneSouthExit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -117,7 +117,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionLaneEastExit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -151,7 +151,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionEntranceEast
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -185,7 +185,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionEntranceNorth
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -200,7 +200,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionLaneNorthExit
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -221,7 +221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1801613256796050
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +252,7 @@ GameObject:
   m_Layer: 0
   m_Name: IntersectionEntranceWest
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4162164826716764455, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -347,7 +347,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1088205175661420}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -5.33, y: -0.56, z: 0.010000229}
+  m_LocalPosition: {x: -5, y: -0.5, z: 0.010000229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4124467103966154}
@@ -374,7 +374,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1257514973661490}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -4.67, y: -0.56, z: -0.010000229}
+  m_LocalPosition: {x: -5, y: -0.5, z: -0.010000229}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4502399891965376}
@@ -387,7 +387,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1253122164698546}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -4.9899983, y: -0.56, z: -0.16999952}
+  m_LocalPosition: {x: -5, y: -0.5, z: -0.16999952}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4383401931682814}
@@ -427,7 +427,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1641048008147228}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -5.0100007, y: -0.56, z: -0.3300004}
+  m_LocalPosition: {x: -5, y: -0.5, z: -0.3300004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4312330841893038}
@@ -750,7 +750,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  possibleEndLanes:
+  possibleEnds:
   - {fileID: 1257514973661490}
   - {fileID: 1253122164698546}
   - {fileID: 1088205175661420}
@@ -769,7 +769,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  possibleEndLanes:
+  possibleEnds:
   - {fileID: 1641048008147228}
   - {fileID: 1257514973661490}
   - {fileID: 1253122164698546}
@@ -806,7 +806,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  possibleEndLanes:
+  possibleEnds:
   - {fileID: 1641048008147228}
   - {fileID: 1253122164698546}
   - {fileID: 1088205175661420}
@@ -825,7 +825,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  possibleEndLanes:
+  possibleEnds:
   - {fileID: 1641048008147228}
   - {fileID: 1257514973661490}
   - {fileID: 1088205175661420}

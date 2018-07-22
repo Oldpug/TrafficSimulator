@@ -7,7 +7,7 @@ public class IntersectionLane : Lane
     [SerializeField]
     private List<Lane> possibleNextLanes = new List<Lane>();
     [SerializeField]
-    private List<GameObject> possibleEndLanes = new List<GameObject>();
+    private List<GameObject> possibleEnds = new List<GameObject>();
     private int nextIndex;
 
     private void Awake()
@@ -19,7 +19,7 @@ public class IntersectionLane : Lane
     {
         get
         {
-            return possibleEndLanes[nextIndex].transform;
+            return possibleEnds[nextIndex].transform;
         }
     }
 
@@ -27,7 +27,7 @@ public class IntersectionLane : Lane
     {
         get
         {
-            
+
             return possibleNextLanes[nextIndex];
         }
     }
