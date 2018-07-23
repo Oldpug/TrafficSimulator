@@ -7,8 +7,11 @@ public class Pair
 
     public void HideIntersectionEntrances(bool isHidden)
     {
-        first.SetActive(isHidden);
-        second.SetActive(isHidden);
+        if(first != null)
+            first.SetActive(isHidden);
+
+        if (second != null)
+            second.SetActive(isHidden);
     }
 }
 
