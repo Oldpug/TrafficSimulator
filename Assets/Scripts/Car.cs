@@ -22,6 +22,8 @@ public class Car : MonoBehaviour {
 
   private Quaternion laneBeginRot;
 
+  private bool isTurning;
+
   private Vector3 laneMidpoint;
 
   public float SpeedLimit {
@@ -74,8 +76,14 @@ public class Car : MonoBehaviour {
     laneBeginPos = transform.position;
     laneBeginRot = transform.rotation;
 
-    laneMidpoint = Bezier.Midpoint(transform, lane.End);
-    laneProgress = 0;
+    if (transform.forward == lane.End.forward)
+      isTurning = false;
+    else {
+      isTurning = true;
+      laneMidpoint = Bezier.Midpoint(transform, lane.End);
+    }
+
+    laneProgress = currentSpeed * Time.deltaTime;
   }
 
   private void AdvanceLane() {
@@ -90,8 +98,11 @@ public class Car : MonoBehaviour {
     if (lane == null)
       return;
 
-    transform.position = Bezier.Lerp(laneBeginPos, laneMidpoint, lane.End.position, laneProgress);
-    transform.rotation = Quaternion.Lerp(laneBeginRot, lane.End.rotation, laneProgress);
+    if (isTurning) {
+      transform.position = Bezier.Lerp(laneBeginPos, laneMidpoint, lane.End.position, laneProgress);
+      transform.rotation = Quaternion.Lerp(laneBeginRot, lane.End.rotation, laneProgress);
+    } else
+      transform.position = Vector3.Lerp(laneBeginPos, lane.End.position, laneProgress);
 
     laneProgress += currentSpeed * Time.deltaTime;
 
