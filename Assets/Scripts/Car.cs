@@ -2,51 +2,34 @@
 
 public class Car : MonoBehaviour {
   [SerializeField]
-  private float speedLimit;
+  private float maxSpeed = 2f;
 
   [SerializeField]
-  private float brakingSpeed;
+  private float brakingSpeed = 2f;
 
   [SerializeField]
-  private float viewDistance;
+  private float viewDistance = 1.5f;
 
   [SerializeField]
   private Lane lane;
 
-  [SerializeField]
-  private float currentSpeed;
+  private float speed;
 
-  private float laneProgress;
-
-  private Vector3 laneBeginPos;
-
-  private Quaternion laneBeginRot;
+  private Rigidbody body;
 
   private bool isTurning;
 
-  private Vector3 laneMidpoint;
+  private float laneLength;
 
-  public float SpeedLimit {
-    get {
-      return speedLimit;
-    }
-  }
+  private Vector3 laneBeginFwd;
 
-  public float CurrentSpeed {
-    get {
-      return currentSpeed;
-    }
-  }
+  private Vector3 laneBeginPos;
 
-  public float BrakingSpeed {
-    get {
-      return brakingSpeed;
-    }
-  }
+  private Vector3 lastFramePos;
 
-  public Lane Lane {
+  public float Velocity {
     get {
-      return lane;
+      return Vector3.Distance(lastFramePos, transform.position);
     }
   }
 
@@ -64,6 +47,10 @@ public class Car : MonoBehaviour {
     }
   }
 
+  private void RecordMovement() {
+    lastFramePos = transform.position;
+  }
+
   private void InitLane() {
     if (lane == null)
       return;
@@ -74,16 +61,11 @@ public class Car : MonoBehaviour {
     }
 
     laneBeginPos = transform.position;
-    laneBeginRot = transform.rotation;
+    laneBeginFwd = transform.forward;
 
-    if (transform.forward == lane.End.forward)
-      isTurning = false;
-    else {
-      isTurning = true;
-      laneMidpoint = Bezier.Midpoint(transform, lane.End);
-    }
+    laneLength = Vector3.Distance(transform.position, lane.End.position);
 
-    laneProgress = currentSpeed * Time.deltaTime;
+    isTurning = transform.forward != lane.End.forward;
   }
 
   private void AdvanceLane() {
@@ -98,31 +80,36 @@ public class Car : MonoBehaviour {
     if (lane == null)
       return;
 
+    var currentDistance = Vector3.Distance(laneBeginPos, transform.position);
+
     if (isTurning) {
-      transform.position = Bezier.Lerp(laneBeginPos, laneMidpoint, lane.End.position, laneProgress);
-      transform.rotation = Quaternion.Lerp(laneBeginRot, lane.End.rotation, laneProgress);
-    } else
-      transform.position = Vector3.Lerp(laneBeginPos, lane.End.position, laneProgress);
+      var dir = Vector3.Lerp(laneBeginFwd, lane.End.forward, currentDistance / laneLength);
+      body.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
+    }
 
-    laneProgress += currentSpeed * Time.deltaTime;
+    body.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
 
-    if (laneProgress >= 1f)
+    if (Mathf.Abs(laneLength - currentDistance) < 0.1f)
       AdvanceLane();
   }
 
   private void Brake() {
-    currentSpeed = Mathf.Max(currentSpeed - brakingSpeed * Time.deltaTime, 0);
+    speed = Mathf.Max(speed - brakingSpeed * Time.fixedDeltaTime, 0);
   }
 
   private void Accelerate() {
-    currentSpeed = Mathf.Min(currentSpeed + brakingSpeed * Time.deltaTime, speedLimit);
+    speed = Mathf.Min(speed + brakingSpeed * Time.fixedDeltaTime, maxSpeed);
   }
 
   private void Awake() {
+    body = GetComponent<Rigidbody>();
+    speed = maxSpeed;
     InitLane();
   }
 
   private void FixedUpdate() {
+    RecordMovement();
+
     if (IsFacingObstacle)
       Brake();
     else
