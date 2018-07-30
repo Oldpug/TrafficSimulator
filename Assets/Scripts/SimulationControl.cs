@@ -40,6 +40,8 @@ public class SimulationControl : MonoBehaviour
     public void SpeedUp()
     {
         Time.timeScale *= 2;
+        if (Time.timeScale == 100)
+            Time.timeScale = 100;
     }
 
     public void SlowDown()
