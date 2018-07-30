@@ -6,9 +6,14 @@ public class StopCar : MonoBehaviour
     [SerializeField]
     private Text buttontext;
 
-    private Rigidbody body;
     private Car car;
-    public bool IsStopped = false;
+
+    /*[SerializeField]
+     private Text simulationtext; */
+
+    private Rigidbody body;
+    public bool IsCarStopped = false;
+
 
     private void Start()
     {
@@ -16,22 +21,25 @@ public class StopCar : MonoBehaviour
         car = GetComponent<Car>();
     }
 
+
     public void Button_Click()
     {
-        if (IsStopped == true)
-        {
-            buttontext.text = "Stop the car";
-            car.enabled = true;
-            IsStopped = false;
-            
-        }
-        else
-        {
-            buttontext.text = "Start the car";
-            body.velocity = Vector3.zero;
-            IsStopped = true;
-            car.enabled = false;
-        }
+       
+            if (IsCarStopped)
+            {
+                buttontext.text = "Stop the car";
+                car.enabled = true;
+                IsCarStopped = false;
+
+            }
+            else
+            {
+                buttontext.text = "Start the car";
+                body.velocity = Vector3.zero;
+                IsCarStopped = true;
+                car.enabled = false;
+            }
+        
     }
 }
 
