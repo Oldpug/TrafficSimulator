@@ -22,8 +22,6 @@ public class EntranceGroup
 
     public void ChangePermission()
     {
-        Debug.Log(currentGroup);
-
         entrance[currentGroup].HideEntrances(false);
 
         currentGroup++;
