@@ -1,25 +1,23 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
+[System.Serializable]
+public class IntersectionExit
+{
+    public Transform exit;
+    public BasicLane nextLane;
+    public int nextIntersectionIndex;
+}
 
 public class IntersectionLane : Lane
 {
-
     [SerializeField]
-    private List<Lane> possibleNextLanes = new List<Lane>();
-    [SerializeField]
-    private List<GameObject> possibleEnds = new List<GameObject>();
-    private int nextIndex;
-
-    private void Awake()
-    {
-        nextIndex = Random.Range(0, possibleNextLanes.Count);
-    }
+    private IntersectionExit[] intersectionExits;
 
     public override Transform End
     {
         get
         {
-            return possibleEnds[nextIndex].transform;
+            return null;
         }
     }
 
@@ -27,8 +25,16 @@ public class IntersectionLane : Lane
     {
         get
         {
-
-            return possibleNextLanes[nextIndex];
+            return null;
         }
+    }
+
+    public IntersectionExit GetIntersectionExit(int nextIntersection)
+    {
+        foreach (IntersectionExit i in intersectionExits)
+            if (i.nextIntersectionIndex == nextIntersection)
+                return i;
+
+        return null;
     }
 }
