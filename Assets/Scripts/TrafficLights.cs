@@ -1,17 +1,36 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class Pair
+public class EntrancesArray
 {
-    public GameObject first, second;
-
-    public void HideIntersectionEntrances(bool isHidden)
+    public GameObject[] Entrances;
+    public void HideEntrances(bool isHidden)
     {
-        if(first != null)
-            first.SetActive(isHidden);
+        foreach (GameObject e in Entrances)
+        {
+            e.SetActive(isHidden);
+        }
+    }
+}
 
-        if (second != null)
-            second.SetActive(isHidden);
+[System.Serializable]
+public class EntranceGroup
+{
+    [SerializeField]
+    private EntrancesArray[] entrance;
+    private int currentGroup = 0;
+
+    public void ChangePermission()
+    {
+        Debug.Log(currentGroup);
+
+        entrance[currentGroup].HideEntrances(false);
+
+        currentGroup++;
+        if (currentGroup >= entrance.Length)
+            currentGroup = 0;
+
+        entrance[currentGroup].HideEntrances(true);
     }
 }
 
@@ -25,15 +44,13 @@ public class TrafficLights : MonoBehaviour
     private float cooldown;
 
     [SerializeField]
-    private Pair horizontal, vertical;
+    private EntranceGroup entrances;
 
     bool isHidden = false;
 
     void Start()
     {
         cooldown = switchCooldown;
-        horizontal.HideIntersectionEntrances(isHidden);
-        vertical.HideIntersectionEntrances(!isHidden);
     }
 
     void Update()
@@ -44,16 +61,8 @@ public class TrafficLights : MonoBehaviour
         }
         else
         {
-            ChangeIntersection();
+            entrances.ChangePermission();
             cooldown = switchCooldown;
         }
-    }
-
-    private void ChangeIntersection()
-    {
-        isHidden = !isHidden;
-
-        horizontal.HideIntersectionEntrances(isHidden);
-        vertical.HideIntersectionEntrances(!isHidden);
     }
 }

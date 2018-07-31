@@ -44,7 +44,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1275770948273330
 GameObject:
   m_ObjectHideFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 23849688547407222}
   - component: {fileID: 65832796413253238}
   m_Layer: 0
-  m_Name: StopperWest
+  m_Name: StopperEast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4762170947695564}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4507404744740146
 Transform:
@@ -324,13 +324,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1581053162650618}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 25.750929, y: 114.744125, z: -16.606138}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4373734619363612}
+  - {fileID: 4942858447398968}
   - {fileID: 4429454237846066}
   - {fileID: 4785084908213208}
-  - {fileID: 4942858447398968}
   - {fileID: 4638177496046864}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -346,7 +346,7 @@ Transform:
   m_LocalScale: {x: 5, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4762170947695564}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!4 &4928702926632114
 Transform:
@@ -372,7 +372,7 @@ Transform:
   m_LocalScale: {x: 5.000002, y: 1, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4762170947695564}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23566824691583962
 MeshRenderer:
@@ -619,12 +619,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchCooldown: 8
-  horizontal:
-    first: {fileID: 1898054440168312}
-    second: {fileID: 0}
-  vertical:
-    first: {fileID: 1167878109926702}
-    second: {fileID: 1323474250595880}
+  entrances:
+    entrance:
+    - Entrances:
+      - {fileID: 1167878109926702}
+    - Entrances:
+      - {fileID: 1323474250595880}
+      - {fileID: 1898054440168312}
 --- !u!114 &114762539966332016
 MonoBehaviour:
   m_ObjectHideFlags: 1

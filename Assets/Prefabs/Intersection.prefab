@@ -785,12 +785,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchCooldown: 8
-  horizontal:
-    first: {fileID: 1324979556819350}
-    second: {fileID: 1415861094452588}
-  vertical:
-    first: {fileID: 1799925015119142}
-    second: {fileID: 1219448632193970}
+  entrances:
+    entrance:
+    - Entrances:
+      - {fileID: 1799925015119142}
+      - {fileID: 1219448632193970}
+    - Entrances:
+      - {fileID: 1324979556819350}
+      - {fileID: 1415861094452588}
 --- !u!114 &114620551939430820
 MonoBehaviour:
   m_ObjectHideFlags: 1
