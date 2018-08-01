@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Driver : MonoBehaviour
 {
-
     [SerializeField]
     private int[] nodes;
-    [SerializeField]
-    private IntersectionLane[] intersections;
     private int currentNode = 0;
 
     private void Start()
@@ -16,7 +11,7 @@ public class Driver : MonoBehaviour
         //here the Diriver will aquire the list of nodes from the pathfinding algorithm.
     }
 
-    public IntersectionExit GetDirection()
+    public BasicLane GetDirection()
     {
         currentNode++;
         if (currentNode >= nodes.Length)
@@ -25,7 +20,7 @@ public class Driver : MonoBehaviour
         }
         else
         {
-            return intersections[currentNode - 1].GetIntersectionExit(nodes[currentNode]);
+            return Map.Instance.intersections[ nodes[currentNode - 1] ].GetIntersectionExit( nodes[ currentNode ] );
         }
     }
 }

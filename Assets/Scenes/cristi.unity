@@ -290,10 +290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodes: 010000000200000003000000
-  intersections:
-  - {fileID: 1400928234}
-  - {fileID: 1323240762}
-  - {fileID: 503410729}
 --- !u!54 &167552584
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -712,6 +708,11 @@ Prefab:
     - target: {fileID: 4638177496046864, guid: e0b1f2dc6e7ce6248ab4f0ef23838c80, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114713731037952912, guid: e0b1f2dc6e7ce6248ab4f0ef23838c80,
+        type: 2}
+      propertyPath: IntersectionIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e0b1f2dc6e7ce6248ab4f0ef23838c80, type: 2}
@@ -1221,6 +1222,11 @@ Prefab:
     - target: {fileID: 4577705140016012, guid: ab465a0a347359b4dbdd502bd7a9a603, type: 2}
       propertyPath: m_RootOrder
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 114279449268299100, guid: ab465a0a347359b4dbdd502bd7a9a603,
+        type: 2}
+      propertyPath: IntersectionIndex
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab465a0a347359b4dbdd502bd7a9a603, type: 2}
@@ -4242,6 +4248,11 @@ Prefab:
     - target: {fileID: 114279449268299100, guid: ab465a0a347359b4dbdd502bd7a9a603,
         type: 2}
       propertyPath: intersectionExits.Array.data[3].nextIntersectionIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114279449268299100, guid: ab465a0a347359b4dbdd502bd7a9a603,
+        type: 2}
+      propertyPath: IntersectionIndex
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
