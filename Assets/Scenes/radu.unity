@@ -1412,10 +1412,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 249408974}
     m_Modifications:
-    - target: {fileID: 0}
-      propertyPath: intersectionExits.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4577705140016012, guid: ab465a0a347359b4dbdd502bd7a9a603, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1447,14 +1443,6 @@ Prefab:
     - target: {fileID: 4577705140016012, guid: ab465a0a347359b4dbdd502bd7a9a603, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1060737107991206, guid: ab465a0a347359b4dbdd502bd7a9a603, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalPosition.x
-      value: -4.92
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ab465a0a347359b4dbdd502bd7a9a603, type: 2}

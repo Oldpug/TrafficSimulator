@@ -51,6 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4378281576915730}
+  - component: {fileID: 114141701015631740}
   m_Layer: 0
   m_Name: IntersectionLaneWestExit
   m_TagString: Untagged
@@ -84,6 +85,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4480894009436760}
+  - component: {fileID: 114886636972862714}
   m_Layer: 0
   m_Name: IntersectionLaneSouthExit
   m_TagString: Untagged
@@ -99,6 +101,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4451179009216016}
+  - component: {fileID: 114081978754602810}
   m_Layer: 0
   m_Name: IntersectionLaneEastExit
   m_TagString: Untagged
@@ -150,6 +153,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4533630775428406}
+  - component: {fileID: 114524156397609816}
   m_Layer: 0
   m_Name: IntersectionLaneNorthExit
   m_TagString: Untagged
@@ -321,7 +325,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1060737107991206}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.533829, y: 21.018446, z: -11.551244}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4630742824806556}
@@ -618,6 +622,32 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114081978754602810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1257514973661490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ab7e5edc534634ead258eff1abb667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  end: {fileID: 4451179009216016}
+  next: {fileID: 0}
+--- !u!114 &114141701015631740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1088205175661420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ab7e5edc534634ead258eff1abb667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  end: {fileID: 4378281576915730}
+  next: {fileID: 0}
 --- !u!114 &114279449268299100
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -629,7 +659,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits: []
+  intersectionExits:
+  - nextLane: {fileID: 114524156397609816}
+    nextIntersectionIndex: 0
+  - nextLane: {fileID: 114081978754602810}
+    nextIntersectionIndex: 0
+  - nextLane: {fileID: 114886636972862714}
+    nextIntersectionIndex: 0
+  - nextLane: {fileID: 114141701015631740}
+    nextIntersectionIndex: 0
+  IntersectionIndex: 0
 --- !u!114 &114460810191580174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -650,3 +689,29 @@ MonoBehaviour:
     - Entrances:
       - {fileID: 1324979556819350}
       - {fileID: 1415861094452588}
+--- !u!114 &114524156397609816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1641048008147228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ab7e5edc534634ead258eff1abb667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  end: {fileID: 4533630775428406}
+  next: {fileID: 0}
+--- !u!114 &114886636972862714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1253122164698546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ab7e5edc534634ead258eff1abb667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  end: {fileID: 4480894009436760}
+  next: {fileID: 0}

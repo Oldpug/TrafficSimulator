@@ -3,7 +3,6 @@
 [System.Serializable]
 public class IntersectionExit
 {
-    public Transform exit;
     public BasicLane nextLane;
     public int nextIntersectionIndex;
 }
@@ -12,6 +11,8 @@ public class IntersectionLane : Lane
 {
     [SerializeField]
     private IntersectionExit[] intersectionExits;
+    [SerializeField]
+    private int IntersectionIndex;
 
     public override Transform End
     {
@@ -29,12 +30,17 @@ public class IntersectionLane : Lane
         }
     }
 
-    public IntersectionExit GetIntersectionExit(int nextIntersection)
+    public BasicLane GetIntersectionExit(int nextIntersection)
     {
         foreach (IntersectionExit i in intersectionExits)
             if (i.nextIntersectionIndex == nextIntersection)
-                return i;
+                return i.nextLane;
 
         return null;
+    }
+
+    public int GetIndex()
+    {
+        return IntersectionIndex;
     }
 }
