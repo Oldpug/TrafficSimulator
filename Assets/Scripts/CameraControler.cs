@@ -62,7 +62,7 @@ public class CameraControler : MonoBehaviour {
                     localRotation.y = 90f;
 
                 Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
-                cameraPivot.rotation = Quaternion.Lerp(this.cameraPivot.rotation, QT, Time.deltaTime * orbitDampening);
+                cameraPivot.rotation = Quaternion.Lerp(this.cameraPivot.rotation, QT, orbitDampening);
             }
         }
 
