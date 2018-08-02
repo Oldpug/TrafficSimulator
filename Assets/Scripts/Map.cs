@@ -2,29 +2,36 @@
 
 public class Map : MonoBehaviour
 {
-    public IntersectionLane[] intersections;
+    private IntersectionLane[] nodes;
 
-    private static Map instance;
+    private static Map instance = null;
     public static Map Instance
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new Map();
-            }
             return instance;
         }
     }
 
-    private Map()
+    private void Awake()
     {
-        IntersectionLane[] nodes = FindObjectsOfType<IntersectionLane>();
-        intersections = new IntersectionLane[nodes.Length + 1];
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
 
-        foreach (IntersectionLane node in nodes)
+        DontDestroyOnLoad(gameObject);
+
+        IntersectionLane[] intersections = FindObjectsOfType<IntersectionLane>();
+        nodes = new IntersectionLane[intersections.Length + 1];
+        foreach(IntersectionLane intersection in intersections)
         {
-            intersections[node.GetIndex()] = node;
+            nodes[intersection.GetIndex()] = intersection;
         }
+    }
+
+    public IntersectionLane GetNode(int index)
+    {
+        return nodes[index];
     }
 }

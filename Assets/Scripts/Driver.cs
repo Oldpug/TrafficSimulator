@@ -3,7 +3,7 @@
 public class Driver : MonoBehaviour
 {
     [SerializeField]
-    private int[] nodes;
+    private int[] path;
     private int currentNode = 0;
 
     private void Start()
@@ -14,13 +14,13 @@ public class Driver : MonoBehaviour
     public BasicLane GetDirection()
     {
         currentNode++;
-        if (currentNode >= nodes.Length)
+        if (currentNode >= path.Length)
         {
             return null;
         }
         else
         {
-            return Map.Instance.intersections[ nodes[currentNode - 1] ].GetIntersectionExit( nodes[ currentNode ] );
+            return Map.Instance.GetNode( path[currentNode - 1] ).GetIntersectionExit( path[ currentNode ] );
         }
     }
 }
