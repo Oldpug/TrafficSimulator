@@ -13,9 +13,11 @@ public class Car : MonoBehaviour {
   [SerializeField]
   private Lane lane;
 
-  private float speed;
-
   private Rigidbody body;
+
+  private Driver driver;
+
+  private float speed;
 
   private bool isTurning;
 
@@ -72,7 +74,7 @@ public class Car : MonoBehaviour {
     transform.position = lane.End.position;
     transform.rotation = lane.End.rotation;
 
-    lane = lane.Next;
+    lane = lane.Next ?? driver.GetDirection();
     InitLane();
   }
 
@@ -103,6 +105,8 @@ public class Car : MonoBehaviour {
 
   private void Awake() {
     body = GetComponent<Rigidbody>();
+    driver = GetComponent<Driver>();
+
     speed = maxSpeed;
     InitLane();
   }

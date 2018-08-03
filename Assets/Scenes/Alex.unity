@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 1417429417}
   - component: {fileID: 1417429422}
   - component: {fileID: 1417429421}
+  - component: {fileID: 1417429423}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -591,6 +592,18 @@ MonoBehaviour:
   brakingSpeed: 2
   viewDistance: 1.5
   lane: {fileID: 1846417719}
+--- !u!114 &1417429423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1417429416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99fada3a23be3214087b6da426bf0ce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: 
 --- !u!4 &1648880646 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4260855850750412, guid: 31a864dd0b9bf2c49884c2c390c93bbe,
