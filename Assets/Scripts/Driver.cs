@@ -22,5 +22,6 @@ public class Driver : MonoBehaviour
         {
             return Map.Instance.GetNode( path[currentNode - 1] ).GetIntersectionExit( path[ currentNode ] );
         }
+        
     }
 }
