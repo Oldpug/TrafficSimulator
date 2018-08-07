@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 64786752426158812}
   - component: {fileID: 114029261943818342}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Lane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 64913858680292336}
   - component: {fileID: 114298134466202690}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Lane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1720502896104872}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15, y: 0, z: -2.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_Children:
   - {fileID: 4593037944315584}
@@ -286,7 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ab7e5edc534634ead258eff1abb667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  end: {fileID: 0}
+  end: {fileID: 4581734391520052}
   next: {fileID: 0}
 --- !u!114 &114298134466202690
 MonoBehaviour:
@@ -299,5 +299,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ab7e5edc534634ead258eff1abb667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  end: {fileID: 0}
+  end: {fileID: 4555809313404960}
   next: {fileID: 0}
