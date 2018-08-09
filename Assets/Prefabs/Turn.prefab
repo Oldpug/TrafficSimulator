@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4885572633936418}
   m_Layer: 0
-  m_Name: Intoarcere
+  m_Name: Turn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
