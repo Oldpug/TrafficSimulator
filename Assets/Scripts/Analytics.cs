@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +33,9 @@ public class Analytics : MonoBehaviour {
 
     [SerializeField]
     private Text text9;
+
+    [SerializeField]
+    private Rigidbody car;
     
 
     float suma;
@@ -52,16 +54,17 @@ public class Analytics : MonoBehaviour {
 
     private IEnumerator Watch()
     {
-        foreach (Car car in cars)
+        while (true)
         {
-            while (true)
+            foreach (Car car in cars)
             {
                 suma += car.Velocity;
                 yield return new WaitForSeconds(1);
             }
         }
+                
     }
-   
+
 
     void Update()
         {
@@ -116,6 +119,7 @@ public class Analytics : MonoBehaviour {
             text1.text = "Speed:  ";
             text6.text = "0";
             text6.text = car.Velocity.ToString("0.##");
+            Debug.Log(car.Velocity.ToString("0.##"));
         }
     }
 
