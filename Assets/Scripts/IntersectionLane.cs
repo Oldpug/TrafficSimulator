@@ -30,10 +30,10 @@ public class IntersectionLane : Lane
         }
     }
 
-    public BasicLane GetIntersectionExit(int nextIntersection)
+    public BasicLane GetIntersectionExit(int nextIntersection, Transform carPosition)
     {
         foreach (IntersectionExit i in intersectionExits)
-            if (i.nextIntersectionIndex == nextIntersection)
+            if (i.nextIntersectionIndex == nextIntersection && carPosition.forward + i.nextLane.End.transform.forward != Vector3.zero)
                 return i.nextLane;
 
         return null;
