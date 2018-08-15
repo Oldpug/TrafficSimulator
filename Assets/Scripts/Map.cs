@@ -19,8 +19,7 @@ public class Map : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-
-        DontDestroyOnLoad(gameObject);
+        
 
         IntersectionLane[] intersections = FindObjectsOfType<IntersectionLane>();
         nodes = new IntersectionLane[intersections.Length + 1];

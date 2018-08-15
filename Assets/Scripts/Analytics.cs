@@ -48,19 +48,15 @@ public class Analytics : MonoBehaviour {
 
     private void Start()
     {
-        StartCoroutine(Watch());
         cars = FindObjectsOfType<Car>();
+        StartCoroutine(Watch());       
     }
 
     private IEnumerator Watch()
     {
         while (true)
-        {
-            foreach (Car car in cars)
-            {
-                suma += car.Velocity;
-                yield return new WaitForSeconds(1);
-            }
+        {        
+                yield return new WaitForSeconds(1);        
         }
                 
     }
@@ -90,10 +86,9 @@ public class Analytics : MonoBehaviour {
             {
                 still = 0;
             }
-
         }
         
-        average = suma / cars.Length;
+            average = suma / cars.Length;
 
             text.text = "Average speed: ";
             text5.text = "0";
@@ -113,13 +108,13 @@ public class Analytics : MonoBehaviour {
 
     void OnMouseDown()
     {
-        // this object was clicked - do something
+        // this object was clicked - do something pls
         foreach (Car car in cars)
         {
+            Debug.Log(car.Velocity.ToString("0.##"));
             text1.text = "Speed:  ";
             text6.text = "0";
-            text6.text = car.Velocity.ToString("0.##");
-            Debug.Log(car.Velocity.ToString("0.##"));
+            text6.text = car.Velocity.ToString("0.##");           
         }
     }
 

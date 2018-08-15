@@ -29,9 +29,16 @@ public class Car : MonoBehaviour {
 
   private Vector3 lastFramePos;
 
-  public float Velocity {
+    private void Start()
+    {
+        lastFramePos = transform.position;
+    }
+
+    public float Velocity {
     get {
-      return Vector3.Distance(lastFramePos, transform.position);
+      float x = Vector3.Distance(lastFramePos, transform.position);
+
+            return x > 0.1f ? x : 0;
     }
   }
 
