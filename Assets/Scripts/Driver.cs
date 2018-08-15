@@ -20,7 +20,7 @@ public class Driver : MonoBehaviour
         }
         else
         {
-            return Map.Instance.GetNode( path[currentNode - 1] ).GetIntersectionExit( path[ currentNode ] );
+            return Map.Instance.GetNode( path[currentNode - 1] ).GetIntersectionExit( path[ currentNode ], this.transform );
         }
         
     }
