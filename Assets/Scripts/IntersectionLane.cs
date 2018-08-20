@@ -36,7 +36,7 @@ public class IntersectionLane : Lane
             if (i.nextIntersectionIndex == nextIntersection && carPosition.forward + i.nextLane.End.transform.forward != Vector3.zero)
                 return i.nextLane;
 
-        return null;
+        return intersectionExits[0].nextLane;
     }
 
     public int GetIndex()
