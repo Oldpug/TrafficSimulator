@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class SimulationControl : MonoBehaviour
 {
-    public Button PlayPauseButton;
+    public Button    PlayPauseButton;
     public Sprite pausebutton;
     public Sprite playbutton;
     public bool IsTimeStopped = true;
 
-    public void Start()
+    [SerializeField]
+    private Text textTimeScale;
+
+    public void Awake()
     {
         Time.timeScale = 0;
     }
@@ -40,8 +43,9 @@ public class SimulationControl : MonoBehaviour
     public void SpeedUp()
     {
         Time.timeScale *= 2;
-        if (Time.timeScale == 100)
+        if (Time.timeScale >= 100)
             Time.timeScale = 100;
+        textTimeScale.text = Time.timeScale.ToString();
     }
 
     public void SlowDown()

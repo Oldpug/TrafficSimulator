@@ -2,109 +2,75 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Analytics : MonoBehaviour {
+public class Analytics : MonoBehaviour
+{
+    [SerializeField]
+    private Text averageSpeed;
 
     [SerializeField]
-    private Text text;
+    private Text currentSpeed;
 
     [SerializeField]
-    private Text text1;
+    private Text totalTime;
 
     [SerializeField]
-    private Text text2;
+    private Text carsStandingStill;
 
     [SerializeField]
-    private Text text3;
+    private Text totalTimeStill;
 
-    [SerializeField]
-    private Text text4;
-
-    [SerializeField]
-    private Text text5;
-
-    [SerializeField]
-    private Text text6;
-
-    [SerializeField]
-    private Text text7;
-
-    [SerializeField]
-    private Text text8;
-
-    [SerializeField]
-    private Text text9;
-
-    [SerializeField]
-    private Rigidbody car;
-    
-
-    float suma;
-    float seconds; 
-    float average;
-    float still;
-    float finaltimestill;
-    public bool alignByGeometry;
+    float totalSum;
+    float seconds = 0;
+    float averageSpeedAtThisMoment;
+    float averageSinceStart;
+    float totaltimestill;
     private Car[] cars;
 
     private void Start()
     {
         cars = FindObjectsOfType<Car>();
-        StartCoroutine(Watch());       
+        StartCoroutine(Watch());
+        seconds = 0;
     }
 
     private IEnumerator Watch()
     {
         while (true)
-        {        
-                yield return new WaitForSeconds(1);        
+        {
+            yield return new WaitForSeconds(1);
+            float suma = 0;
+            int stoppedCars = 0;
+            foreach (Car car in cars) //average speed for all the cars
+            {                
+                suma += car.Velocity;
+                if (car.Velocity == 0)
+                {
+                    stoppedCars++;
+                    totaltimestill++;                  
+                }
+
+            }
+            
+
+            averageSpeedAtThisMoment = suma / cars.Length;
+            totalSum += averageSpeedAtThisMoment;
+            averageSinceStart = totalSum / seconds;
+
+            carsStandingStill.text = stoppedCars.ToString(); 
+            averageSpeed.text = averageSinceStart.ToString("0.##");
+            currentSpeed.text = averageSpeedAtThisMoment.ToString("0.##");
+            totalTimeStill.text = totaltimestill.ToString("0.##");
         }
-                
     }
 
-
-    void Update()
+    private void Update()
+    {
+        totalTime.text = seconds.ToString("0.##");
+        if (Time.timeScale > 0)
         {
-
-        seconds += Time.deltaTime;
-
-        //average = suma / seconds; average speed for a single car
-
-
-        foreach (Car car in cars) //average speed for all the cars
-        {
-            suma += car.Velocity;
-            if (car.Velocity == 0)
-            {
-                still += Time.deltaTime;
-                finaltimestill += Time.deltaTime;
-
-                text3.text = "Standing still: ";
-                text8.text = "0";
-                text8.text = still.ToString("0.##");
-            }
-            else
-            {
-                still = 0;
-            }
+            seconds += Time.deltaTime;
         }
-        
-            average = suma / cars.Length;
-
-            text.text = "Average speed: ";
-            text5.text = "0";
-            text5.text = average.ToString("0.##");
-
-            text2.text = "Total time: ";
-            text7.text = "0";
-            text7.text = seconds.ToString("0.##");
-
-        // finaltimestill = Mathf.Round(finaltimestill * 100f) / 100f;
-
-        text4.text = "Total time still: ";
-        text9.text = "0";
-        text9.text = finaltimestill.ToString("0.##");
-
-       }
+    }
 
     void OnMouseDown()
     {
@@ -112,9 +78,8 @@ public class Analytics : MonoBehaviour {
         foreach (Car car in cars)
         {
             Debug.Log(car.Velocity.ToString("0.##"));
-            text1.text = "Speed:  ";
-            text6.text = "0";
-            text6.text = car.Velocity.ToString("0.##");           
+
+            currentSpeed.text = car.Velocity.ToString("0.##");
         }
     }
 
