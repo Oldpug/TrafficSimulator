@@ -105,7 +105,7 @@ public class Car : MonoBehaviour
 
         body.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
 
-        if (Mathf.Abs(laneLength - currentDistance) < EPSILON)
+        if (Mathf.Abs(laneLength - currentDistance) < 0.1f)
             AdvanceLane();
     }
 
