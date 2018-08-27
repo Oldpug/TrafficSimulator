@@ -1,21 +1,31 @@
 ﻿using UnityEngine;
 
-public class BasicLane : Lane {
-  [SerializeField]
-  private Transform end;
+public class BasicLane : Lane
+{
+    [SerializeField]
+    private Transform end;
 
-  [SerializeField]
-  private Lane next;
+    [SerializeField]
+    private Lane next;
 
-  public override Transform End {
-    get {
-      return end;
+    public override Transform End
+    {
+        get
+        {
+            return end;
+        }
     }
-  }
 
-  public override Lane Next {
-    get {
-      return next;
+    public override Lane Next
+    {
+        get
+        {
+            return next;
+        }
     }
-  }
+
+    public override void SetNextLane(Lane newLane)
+    {
+        next = newLane;
+    }
 }
