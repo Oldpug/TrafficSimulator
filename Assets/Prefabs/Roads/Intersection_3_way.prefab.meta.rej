@@ -1,0 +1,8 @@
+diff a/Assets/Prefabs/Roads/Intersection_3_way.prefab.meta b/Assets/Prefabs/Roads/Intersection_3_way.prefab.meta	(rejected hunks)
+@@ -1,5 +1,5 @@
+ fileFormatVersion: 2
+-guid: e0b1f2dc6e7ce6248ab4f0ef23838c80
++guid: 5f2d34bdae0d8dc46854ad3b9a357859
+ NativeFormatImporter:
+   externalObjects: {}
+   mainObjectFileID: 100100000
