@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class SimulationControl : MonoBehaviour
 {
     public Button    PlayPauseButton;
-    public Sprite pausebutton;
-    public Sprite playbutton;
+    public Sprite PauseButton;
+    public Sprite playButton;
     public bool IsTimeStopped = true;
 
     [SerializeField]
@@ -25,13 +25,13 @@ public class SimulationControl : MonoBehaviour
             {
                 Time.timeScale = 1.0F;
                 IsTimeStopped = false;
-                PlayPauseButton.image.overrideSprite = pausebutton;
+                PlayPauseButton.image.overrideSprite = PauseButton;
             }
             else
             {
                 Time.timeScale = 0.0F;
                 IsTimeStopped = true;
-                PlayPauseButton.image.overrideSprite = playbutton;
+                PlayPauseButton.image.overrideSprite = playButton;
             }
     }
 
