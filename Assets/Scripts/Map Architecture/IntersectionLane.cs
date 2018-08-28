@@ -43,9 +43,4 @@ public class IntersectionLane : Lane
     {
         return IntersectionIndex;
     }
-
-    public override void SetNextLane(Lane newLane)
-    {
-        return;
-    }
 }

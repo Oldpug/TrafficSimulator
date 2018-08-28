@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Prefabs/30 degrees turn.prefab.meta
+guid: 783ebaefbbc9dba408382d008b637881
+=======
 guid: a84afade15244ac4588eb41e2f5ab82d
+>>>>>>> be4484f6f80fdd0a8d2574f8d0d96adcaae6bef0:Assets/Prefabs/Interface/SimulationControlPanel.prefab.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 100100000
