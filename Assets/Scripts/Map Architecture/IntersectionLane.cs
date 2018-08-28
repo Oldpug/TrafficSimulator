@@ -1,18 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-[System.Serializable]
+[Serializable]
 public class IntersectionExit
 {
     public BasicLane[] nextLane;
+
     public int nextIntersectionIndex;
 }
 
 public class IntersectionLane : Lane
 {
     [SerializeField]
-    private IntersectionExit[] intersectionExits;
+    private readonly IntersectionExit[] intersectionExits;
+
     [SerializeField]
-    private int IntersectionIndex;
+    private readonly int IntersectionIndex;
 
     public override Transform End
     {
@@ -28,13 +32,15 @@ public class IntersectionLane : Lane
         {
             return null;
         }
+
+        set { }
     }
 
     public BasicLane GetIntersectionExit(int nextIntersection, Transform carPosition)
     {
-        foreach (IntersectionExit i in intersectionExits)
+        foreach (var i in intersectionExits)
             if (i.nextIntersectionIndex == nextIntersection && carPosition.forward + i.nextLane[Random.Range(0, i.nextLane.Length)].End.transform.forward != Vector3.zero)
-                return i.nextLane[Random.Range(0,i.nextLane.Length)];
+                return i.nextLane[Random.Range(0, i.nextLane.Length)];
 
         return intersectionExits[0].nextLane[0];
     }
