@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 public class IntersectionExit {
   public BasicLane[] nextLane;
 
-  public int nextIntersectionIndex;
+  public IntersectionLane nextIntersection;
 }
 
 public class IntersectionLane : Lane {
@@ -27,9 +27,9 @@ public class IntersectionLane : Lane {
     set { }
   }
 
-  public BasicLane GetIntersectionExit(int nextIntersection, Transform carPosition) {
+  public BasicLane GetIntersectionExit(IntersectionLane nextIntersection, Transform carPosition) {
     foreach (var i in intersectionExits)
-      if (i.nextIntersectionIndex == nextIntersection && carPosition.forward + i.nextLane[Random.Range(0, i.nextLane.Length)].End.transform.forward != Vector3.zero)
+      if (i.nextIntersection == nextIntersection && carPosition.forward + i.nextLane[Random.Range(0, i.nextLane.Length)].End.transform.forward != Vector3.zero)
         return i.nextLane[Random.Range(0, i.nextLane.Length)];
 
     return intersectionExits[0].nextLane[0];
