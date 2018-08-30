@@ -30,9 +30,6 @@ public class Linker : MonoBehaviour
     private Transform linkingPoint;
 
     [SerializeField]
-    public Transform oldestParent;
-
-    [SerializeField]
     public Transform road;
 
     public void Link(Linker son)
