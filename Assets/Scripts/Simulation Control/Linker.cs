@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Linker : MonoBehaviour
 {
@@ -38,6 +36,20 @@ public class Linker : MonoBehaviour
         son.Primary.Next = secondary;
 
         son.road.transform.position = linkingPoint.position + (son.road.position - son.linkingPoint.position);
+    }
+
+    public void OnMouseUp()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out hit, 100.0f))
+        {
+            Linker father = hit.transform.GetComponent<Linker>();
+            if(father != null)
+            {
+                father.Link(this);
+            }
+        }
     }
 
 }
