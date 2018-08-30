@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
 public class Node : MonoBehaviour {
+  private static int lastIndex = -1;
 
-    [SerializeField]
-    private int NodeIndex;
+  public int Index { get; private set; }
 
-    public int GetIndex()
-    {
-        return NodeIndex;
-    }
+  private void Awake() {
+    Index = ++lastIndex;
+  }
 }
