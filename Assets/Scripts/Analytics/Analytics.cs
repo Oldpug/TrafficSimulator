@@ -8,10 +8,7 @@ public class Analytics : MonoBehaviour
     private Text averageSpeed;
 
     [SerializeField]
-    private Text currentSpeed;
-
-    [SerializeField]
-    private Text totalTime;
+    private Text TimeLeft;
 
     [SerializeField]
     private Text carsStandingStill;
@@ -19,18 +16,33 @@ public class Analytics : MonoBehaviour
     [SerializeField]
     private Text totalTimeStill;
 
+    [SerializeField]
+    private Text SimulationTime;
+
+    [SerializeField]
+    private Text CO2Text;
+
     float totalSum;
-    float seconds = 0;
-    float averageSpeedAtThisMoment;
-    float averageSinceStart;
+
+    float seconds;
+    float hour;
+    float minutes;
+    float average;
     float totaltimestill;
-    private Car[] cars;
+    private CarAnalytics[] cars;
+    float CarbonEmissions;
+
+   /* public InputField HourText;
+    public InputField MinutesText;
+    public InputField SecondsText;*/
 
     private void Start()
     {
-        cars = FindObjectsOfType<Car>();
+        cars = FindObjectsOfType<CarAnalytics>();
         StartCoroutine(Watch());
-        seconds = 0;
+        /*HourText.text = hour.ToString();
+        MinutesText.text = minutes.ToString();
+        SecondsText.text = seconds.ToString();*/
     }
 
     private IEnumerator Watch()
@@ -39,9 +51,11 @@ public class Analytics : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             float suma = 0;
+            float CO2Sum = 0;
             int stoppedCars = 0;
-            foreach (Car car in cars) //average speed for all the cars
-            {                
+            foreach (CarAnalytics car in cars) //average speed for all the cars
+            {
+                CO2Sum += car.CO2;
                 suma += car.Velocity;
                 if (car.Velocity == 0)
                 {
@@ -50,42 +64,25 @@ public class Analytics : MonoBehaviour
                 }
 
             }
-            
 
-            averageSpeedAtThisMoment = suma / cars.Length;
-            totalSum += averageSpeedAtThisMoment;
-            averageSinceStart = totalSum / seconds;
+            CarbonEmissions = CO2Sum / seconds;
+            average = totalSum / seconds;
 
-            carsStandingStill.text = stoppedCars.ToString(); 
-            averageSpeed.text = averageSinceStart.ToString("0.##");
-            currentSpeed.text = averageSpeedAtThisMoment.ToString("0.##");
+            CO2Text.text = CarbonEmissions.ToString();
+            carsStandingStill.text = stoppedCars.ToString("0.##"); 
+            averageSpeed.text = average.ToString("0.##");
             totalTimeStill.text = totaltimestill.ToString("0.##");
         }
     }
 
     private void Update()
     {
-        totalTime.text = seconds.ToString("0.##");
+        TimeLeft.text = seconds.ToString("0.##");
         if (Time.timeScale > 0)
         {
             seconds += Time.deltaTime;
         }
-    }
 
-    void OnMouseDown()
-    {
-        // this object was clicked - do something pls
-        foreach (Car car in cars)
-        {
-            Debug.Log(car.Velocity.ToString("0.##"));
-
-            currentSpeed.text = car.Velocity.ToString("0.##");
-        }
     }
 
 }
-
-
-
-
-
