@@ -2,7 +2,7 @@
 
 public class Driver : MonoBehaviour {
   [SerializeField]
-  private int[] path;
+  private IntersectionLane[] path;
 
   private int currentNode;
 

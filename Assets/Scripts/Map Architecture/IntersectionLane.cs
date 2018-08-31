@@ -4,14 +4,14 @@ using Random = UnityEngine.Random;
 
 [Serializable]
 public class IntersectionExit {
-  public BasicLane[] nextLane;
+  public BasicLane[] NextLanes;
 
-  public IntersectionLane nextIntersection;
+  public IntersectionLane NextIntersection;
 }
 
 public class IntersectionLane : Lane {
   [SerializeField]
-  private IntersectionExit[] intersectionExits;
+  public IntersectionExit[] IntersectionExits;
 
   public override Transform End {
     get {
@@ -28,10 +28,10 @@ public class IntersectionLane : Lane {
   }
 
   public BasicLane GetIntersectionExit(IntersectionLane nextIntersection, Transform carPosition) {
-    foreach (var i in intersectionExits)
-      if (i.nextIntersection == nextIntersection && carPosition.forward + i.nextLane[Random.Range(0, i.nextLane.Length)].End.transform.forward != Vector3.zero)
-        return i.nextLane[Random.Range(0, i.nextLane.Length)];
+    foreach (var i in IntersectionExits)
+      if (i.NextIntersection == nextIntersection && carPosition.forward + i.NextLanes[Random.Range(0, i.NextLanes.Length)].End.transform.forward != Vector3.zero)
+        return i.NextLanes[Random.Range(0, i.NextLanes.Length)];
 
-    return intersectionExits[0].nextLane[0];
+    return IntersectionExits[0].NextLanes[0];
   }
 }
