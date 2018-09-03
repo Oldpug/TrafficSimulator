@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4494,17 +4494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1943500031}
-    nextIntersectionIndex: 4
-  - nextLane:
-    - {fileID: 1428816277}
-    nextIntersectionIndex: 12
-  - nextLane:
-    - {fileID: 2095468244}
-    nextIntersectionIndex: 7
-  IntersectionIndex: 8
+  IntersectionExits: []
 --- !u!114 &756525215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4537,7 +4527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 8
 --- !u!1 &788670463
 GameObject:
   m_ObjectHideFlags: 0
@@ -4763,17 +4752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 726135487}
-    nextIntersectionIndex: 0
-  - nextLane:
-    - {fileID: 1756967749}
-    nextIntersectionIndex: 8
-  - nextLane:
-    - {fileID: 683986773}
-    nextIntersectionIndex: 3
-  IntersectionIndex: 4
+  IntersectionExits: []
 --- !u!114 &831838046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4806,7 +4785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 4
 --- !u!1 &836201973
 GameObject:
   m_ObjectHideFlags: 0
@@ -6059,17 +6037,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1588146555}
-    nextIntersectionIndex: 3
-  - nextLane:
-    - {fileID: 970088259}
-    nextIntersectionIndex: 6
-  - nextLane:
-    - {fileID: 1938920920}
-    nextIntersectionIndex: 1
-  IntersectionIndex: 2
+  IntersectionExits: []
 --- !u!114 &1005558886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6102,7 +6070,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 2
 --- !u!1 &1015288911
 GameObject:
   m_ObjectHideFlags: 0
@@ -6305,20 +6272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1422659696}
-    nextIntersectionIndex: 2
-  - nextLane:
-    - {fileID: 1613712703}
-    nextIntersectionIndex: 7
-  - nextLane:
-    - {fileID: 1845788911}
-    nextIntersectionIndex: 10
-  - nextLane:
-    - {fileID: 1813054861}
-    nextIntersectionIndex: 5
-  IntersectionIndex: 6
+  IntersectionExits: []
 --- !u!114 &1044719839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6352,7 +6306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 6
 --- !u!1 &1047170339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7203,17 +7156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 452140418}
-    nextIntersectionIndex: 6
-  - nextLane:
-    - {fileID: 1451802543}
-    nextIntersectionIndex: 11
-  - nextLane:
-    - {fileID: 788670465}
-    nextIntersectionIndex: 9
-  IntersectionIndex: 10
+  IntersectionExits: []
 --- !u!114 &1168213049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7246,7 +7189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 10
 --- !u!4 &1176985870
 Transform:
   m_ObjectHideFlags: 0
@@ -7297,17 +7239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 16622582}
-    nextIntersectionIndex: 4
-  - nextLane:
-    - {fileID: 1016024141}
-    nextIntersectionIndex: 7
-  - nextLane:
-    - {fileID: 187590099}
-    nextIntersectionIndex: 2
-  IntersectionIndex: 3
+  IntersectionExits: []
 --- !u!114 &1198468793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7340,7 +7272,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 3
 --- !u!1 &1198599404
 GameObject:
   m_ObjectHideFlags: 0
@@ -8234,17 +8165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1886198714}
-    nextIntersectionIndex: 1
-  - nextLane:
-    - {fileID: 1070176514}
-    nextIntersectionIndex: 6
-  - nextLane:
-    - {fileID: 191839119}
-    nextIntersectionIndex: 9
-  IntersectionIndex: 5
+  IntersectionExits: []
 --- !u!114 &1289024154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8277,7 +8198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 5
 --- !u!1 &1301344990
 GameObject:
   m_ObjectHideFlags: 0
@@ -8732,6 +8652,7 @@ MonoBehaviour:
   maxSpeed: 2
   brakingSpeed: 2
   viewDistance: 1.5
+  laneCorrectionDistance: 0.01
   lane: {fileID: 2006843618}
 --- !u!1 &1406970929
 GameObject:
@@ -10897,17 +10818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1198599406}
-    nextIntersectionIndex: 8
-  - nextLane:
-    - {fileID: 433689190}
-    nextIntersectionIndex: 0
-  - nextLane:
-    - {fileID: 314678952}
-    nextIntersectionIndex: 11
-  IntersectionIndex: 12
+  IntersectionExits: []
 --- !u!114 &1656986685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10940,7 +10851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 12
 --- !u!1 &1673125966
 GameObject:
   m_ObjectHideFlags: 0
@@ -11703,17 +11613,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1130424132}
-    nextIntersectionIndex: 5
-  - nextLane:
-    - {fileID: 1130424130}
-    nextIntersectionIndex: 10
-  - nextLane:
-    - {fileID: 1130424131}
-    nextIntersectionIndex: 0
-  IntersectionIndex: 9
+  IntersectionExits: []
 --- !u!114 &1769377117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11746,7 +11646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 9
 --- !u!1 &1810905337
 GameObject:
   m_ObjectHideFlags: 0
@@ -13141,17 +13040,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 189514790}
-    nextIntersectionIndex: 2
-  - nextLane:
-    - {fileID: 1475727198}
-    nextIntersectionIndex: 5
-  - nextLane:
-    - {fileID: 1288555724}
-    nextIntersectionIndex: 5
-  IntersectionIndex: 1
+  IntersectionExits: []
 --- !u!114 &1974924991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13184,7 +13073,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 1
 --- !u!1 &1977950457
 GameObject:
   m_ObjectHideFlags: 0
@@ -13893,17 +13781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intersectionExits:
-  - nextLane:
-    - {fileID: 1653723489}
-    nextIntersectionIndex: 7
-  - nextLane:
-    - {fileID: 1218015812}
-    nextIntersectionIndex: 12
-  - nextLane:
-    - {fileID: 1858398464}
-    nextIntersectionIndex: 10
-  IntersectionIndex: 11
+  IntersectionExits: []
 --- !u!114 &2061865159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13936,7 +13814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodeIndex: 11
 --- !u!1001 &2066828599
 Prefab:
   m_ObjectHideFlags: 0
