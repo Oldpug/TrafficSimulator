@@ -65,4 +65,11 @@ public class InterfaceManager : MonoBehaviour
             linker.gameObject.SetActive(value);
         }
     }
+    
+    public void ToggleAnalytics()
+    {
+        if (buildMode)
+            ToggleBuildMode();
+        analyticsPanel.SetActive(!analyticsPanel.activeSelf);
+    }
 }
