@@ -45,7 +45,7 @@ public class Linker : MonoBehaviour
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             Linker father = hit.transform.GetComponent<Linker>();
-            if(father != null)
+            if(father != null && father != this)
             {
                 father.Link(this);
             }

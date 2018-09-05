@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class RoadStructure : MonoBehaviour {
 
-    [SerializeField]
-    public Transform linkingInterface;
-
     public InterfaceManager interfaceManager;
 
     private Vector3 draggingOffset;
     private Vector3 screenPoint;
+
+    public void Start()
+    {
+        interfaceManager = FindObjectOfType<InterfaceManager>();
+        transform.parent = null;
+    }
 
     public void OnMouseDown()
     {

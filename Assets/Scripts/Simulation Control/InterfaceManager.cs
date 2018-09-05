@@ -26,9 +26,6 @@ public class InterfaceManager : MonoBehaviour
     public void SpawnRoad(RoadStructure road)
     {
         Instantiate(road);
-        road.OnMouseDown();
-        road.interfaceManager = this;
-        road.transform.parent = null;
     }
 
     public void EnableRoadPanel(Transform road)
