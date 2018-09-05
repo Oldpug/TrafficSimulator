@@ -51,6 +51,7 @@ public class SimulationControl : MonoBehaviour
     public void SlowDown()
     {
         Time.timeScale /= 2;
+        textTimeScale.text = Time.timeScale.ToString();
     }
 
 }

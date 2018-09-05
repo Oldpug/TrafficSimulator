@@ -68,8 +68,8 @@ public class Analytics : MonoBehaviour
             CarbonEmissions = CO2Sum / seconds;
             average = totalSum / seconds;
 
-            CO2Text.text = CarbonEmissions.ToString();
-            carsStandingStill.text = stoppedCars.ToString("0.##"); 
+            CO2Text.text = CarbonEmissions.ToString("0.##");
+            carsStandingStill.text = stoppedCars.ToString(); 
             averageSpeed.text = average.ToString("0.##");
             totalTimeStill.text = totaltimestill.ToString("0.##");
         }
