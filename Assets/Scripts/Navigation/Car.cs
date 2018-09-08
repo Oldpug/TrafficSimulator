@@ -2,23 +2,26 @@
 
 public class Car : MonoBehaviour {
   [SerializeField]
-  private float maxSpeed = 2f;
+  private readonly float maxSpeed = 2f;
 
   [SerializeField]
-  private float brakingSpeed = 2f;
+  private readonly float brakingSpeed = 2f;
 
   [SerializeField]
-  private float viewDistance = 1.5f;
+  private readonly float viewDistance = 1.5f;
 
   [SerializeField]
-  private float laneCorrectionDistance = 0.01f;
+  private readonly float laneCorrectionDistance = 0.01f;
+
+  [SerializeField]
+  private IntersectionLane[] path;
 
   [SerializeField]
   private Lane lane;
 
   private Rigidbody body;
 
-  private Driver driver;
+  private int currentPathIdx;
 
   private float speed;
 
@@ -76,9 +79,17 @@ public class Car : MonoBehaviour {
     transform.rotation = lane.End.rotation;
 
     var next = lane.Next;
-    var intersection = next as IntersectionLane;
 
-    lane = intersection == null ? next : driver.GetDirection(intersection);
+    if (next is IntersectionLane) {
+      var intersection = next as IntersectionLane;
+
+      if (++currentPathIdx >= path.Length)
+        lane = null;
+      else
+        lane = intersection.GetIntersectionExit(path[currentPathIdx], transform);
+    } else
+      lane = next;
+
     InitLane();
   }
 
@@ -109,7 +120,9 @@ public class Car : MonoBehaviour {
 
   private void Awake() {
     body = GetComponent<Rigidbody>();
-    driver = GetComponent<Driver>();
+
+    if (path == null)
+      path = new IntersectionLane[0];
 
     lastFramePos = transform.position;
     speed = maxSpeed;
