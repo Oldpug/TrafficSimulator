@@ -17,7 +17,7 @@ public class Car : MonoBehaviour {
   private IntersectionLane[] path;
 
   [SerializeField]
-  private Lane lane;
+  public Lane lane;
 
   private Rigidbody body;
 
