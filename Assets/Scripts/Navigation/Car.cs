@@ -2,16 +2,16 @@
 
 public class Car : MonoBehaviour {
   [SerializeField]
-  private readonly float maxSpeed = 2f;
+  private float maxSpeed = 2f;
 
   [SerializeField]
-  private readonly float brakingSpeed = 2f;
+  private float brakingSpeed = 2f;
 
   [SerializeField]
-  private readonly float viewDistance = 1.5f;
+  private float viewDistance = 1.5f;
 
   [SerializeField]
-  private readonly float laneCorrectionDistance = 0.01f;
+  private float laneCorrectionDistance = 0.01f;
 
   [SerializeField]
   private IntersectionLane[] path;
