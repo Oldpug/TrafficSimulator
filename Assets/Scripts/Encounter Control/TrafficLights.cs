@@ -4,8 +4,15 @@
 public class EntrancesArray
 {
     public GameObject[] Entrances;
-    public void HideEntrances(bool isHidden)
+    public float switchTimer;
+    public float cooldown;
+
+    [SerializeField]
+    private bool isHidden;
+
+    public void ToggleHidden()
     {
+        isHidden = !isHidden;
         foreach (GameObject e in Entrances)
         {
             e.SetActive(isHidden);
@@ -20,26 +27,30 @@ public class EntranceGroup
     private EntrancesArray[] entrance;
     private int currentGroup = 0;
 
-    public void ChangePermission()
+    public void SetTimers()
     {
-        entrance[currentGroup].HideEntrances(false);
+        foreach (EntrancesArray i in entrance)
+        {
+            i.cooldown = i.switchTimer;
+        }
+    }
 
-        currentGroup++;
-        if (currentGroup >= entrance.Length)
-            currentGroup = 0;
-
-        entrance[currentGroup].HideEntrances(true);
+    public void UpdateTimers()
+    {
+        foreach (EntrancesArray i in entrance)
+        {
+            i.cooldown -= Time.deltaTime;
+            if (i.cooldown <= 0)
+            {
+                i.ToggleHidden();
+                i.cooldown = i.switchTimer;
+            }
+        }
     }
 }
 
 public class TrafficLights : MonoBehaviour
 {
-
-    public static readonly string StopperTag = "IntersectionStopper";
-
-    [SerializeField]
-    private float switchCooldown;
-    private float cooldown;
 
     [SerializeField]
     private EntranceGroup entrances;
@@ -48,19 +59,11 @@ public class TrafficLights : MonoBehaviour
 
     void Start()
     {
-        cooldown = switchCooldown;
+        entrances.SetTimers();
     }
 
     void Update()
     {
-        if (cooldown > 0)
-        {
-            cooldown -= Time.deltaTime;
-        }
-        else
-        {
-            entrances.ChangePermission();
-            cooldown = switchCooldown;
-        }
+        entrances.UpdateTimers();
     }
 }

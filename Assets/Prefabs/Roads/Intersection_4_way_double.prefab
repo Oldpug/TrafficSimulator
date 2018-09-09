@@ -120,7 +120,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4361407517002776}
-  - component: {fileID: 114680505743006940}
   - component: {fileID: 114761441037349032}
   - component: {fileID: 114801635237459006}
   m_Layer: 0
@@ -1152,17 +1151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   end: {fileID: 4943976619228966}
   next: {fileID: 0}
---- !u!114 &114680505743006940
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1260510093992920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114725956340631518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1187,7 +1175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51986b325d083064a827f5a6aabb5982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchCooldown: 11
   entrances:
     entrance:
     - Entrances:
@@ -1195,11 +1182,17 @@ MonoBehaviour:
       - {fileID: 1245008690824464}
       - {fileID: 1252384611138400}
       - {fileID: 1223580888040334}
+      switchTimer: 8
+      cooldown: 0
+      isHidden: 1
     - Entrances:
       - {fileID: 1861394208157242}
       - {fileID: 1269461910749966}
       - {fileID: 1741861547809558}
       - {fileID: 1699841780706550}
+      switchTimer: 8
+      cooldown: 0
+      isHidden: 0
 --- !u!114 &114801635237459006
 MonoBehaviour:
   m_ObjectHideFlags: 1

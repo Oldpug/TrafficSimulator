@@ -153,7 +153,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4762170947695564}
-  - component: {fileID: 114426761061045666}
   - component: {fileID: 114476535497667668}
   - component: {fileID: 114734709957276958}
   - component: {fileID: 65969676734022834}
@@ -988,17 +987,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interfaceManager: {fileID: 0}
---- !u!114 &114426761061045666
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1581053162650618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a076e838bb3b164983292855ce7a42a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114440168212828522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1023,14 +1011,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51986b325d083064a827f5a6aabb5982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchCooldown: 11
   entrances:
     entrance:
     - Entrances:
       - {fileID: 1167878109926702}
+      switchTimer: 8
+      cooldown: 0
+      isHidden: 1
     - Entrances:
       - {fileID: 1323474250595880}
       - {fileID: 1898054440168312}
+      switchTimer: 8
+      cooldown: 0
+      isHidden: 0
 --- !u!114 &114478970477371890
 MonoBehaviour:
   m_ObjectHideFlags: 1
