@@ -9,8 +9,13 @@ public class InterfaceManager : MonoBehaviour
 
     [SerializeField]
     GameObject buildPanel;
+
     [SerializeField]
     GameObject analyticsPanel;
+
+    [SerializeField]
+    RoadCustomizationPanel roadCustomizationPanel;
+
     Linker[] linkers;
 
     private void Start()
@@ -23,14 +28,15 @@ public class InterfaceManager : MonoBehaviour
         }
     }
 
-    public void SpawnRoad(RoadStructure road)
+    public void SpawnRoad(MapStructure road)
     {
         Instantiate(road);
     }
 
-    public void EnableRoadPanel(Transform road)
+    public void EnableRoadPanel(Transform road, string tag)
     {
-
+        roadCustomizationPanel.gameObject.SetActive(true);
+        roadCustomizationPanel.SelectRoad(road);
     }
 
     public void ToggleBuildMode()

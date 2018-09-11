@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadStructure : MonoBehaviour {
+public class MapStructure : MonoBehaviour {
 
     public InterfaceManager interfaceManager;
 
     private Vector3 draggingOffset;
     private Vector3 screenPoint;
+
+    [SerializeField]
+    private string StructureTag;
 
     public void Start()
     {
@@ -17,7 +20,7 @@ public class RoadStructure : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        interfaceManager.EnableRoadPanel(transform);
+        interfaceManager.EnableRoadPanel(transform, StructureTag);
         if(interfaceManager.buildMode)
         {
             screenPoint = Camera.main.WorldToScreenPoint(transform.position);
