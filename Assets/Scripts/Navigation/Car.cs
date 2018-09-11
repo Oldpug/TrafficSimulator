@@ -1,142 +1,139 @@
 ﻿using UnityEngine;
 
-public class Car : MonoBehaviour {
-  [SerializeField]
-  private float maxSpeed = 2f;
+public class Car : MonoBehaviour
+{
+    [SerializeField]
+    private float maxSpeed = 2f;
 
-  [SerializeField]
-  private float brakingSpeed = 2f;
+    [SerializeField]
+    private float brakingSpeed = 2f;
 
-  [SerializeField]
-  private float viewDistance = 1.5f;
+    [SerializeField]
+    private float viewDistance = 1.5f;
 
-  [SerializeField]
-  private float laneCorrectionDistance = 0.01f;
+    [SerializeField]
+    private float laneCorrectionDistance = 0.01f;
 
-  [SerializeField]
-  private IntersectionLane[] path;
+    [SerializeField]
+    public Lane Lane;
 
-  [SerializeField]
-  public Lane lane;
+    private Rigidbody body;
 
-  private Rigidbody body;
+    private float speed;
 
-  private int currentPathIdx;
+    private bool isTurning;
 
-  private float speed;
+    private float laneLength;
 
-  private bool isTurning;
+    private Vector3 laneBeginFwd;
 
-  private float laneLength;
+    private Vector3 laneBeginPos;
 
-  private Vector3 laneBeginFwd;
+    private Vector3 lastFramePos;
 
-  private Vector3 laneBeginPos;
+    public float Velocity { get; private set; }
 
-  private Vector3 lastFramePos;
+    public bool IsFacingObstacle
+    {
+        get
+        {
+            RaycastHit hit;
+            var isFacingObstacle = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);
 
-  public float Velocity { get; private set; }
+            if (isFacingObstacle)
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+            else
+                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
-  public bool IsFacingObstacle {
-    get {
-      RaycastHit hit;
-      var isFacingObstacle = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);
-
-      if (isFacingObstacle)
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-      else
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-
-      return isFacingObstacle;
-    }
-  }
-
-  private void RecordMovement() {
-    var x = Vector3.Distance(lastFramePos, transform.position);
-    Velocity = x > laneCorrectionDistance ? x : 0;
-    lastFramePos = transform.position;
-  }
-
-  private void InitLane() {
-    if (lane == null)
-      return;
-
-    if (lane.End == null) {
-      lane = null;
-      return;
+            return isFacingObstacle;
+        }
     }
 
-    laneBeginPos = transform.position;
-    laneBeginFwd = transform.forward;
-
-    laneLength = Vector3.Distance(transform.position, lane.End.position);
-
-    isTurning = transform.forward != lane.End.forward;
-  }
-
-  private void AdvanceLane() {
-    transform.position = lane.End.position;
-    transform.rotation = lane.End.rotation;
-
-    var next = lane.Next;
-
-    if (next is IntersectionLane) {
-      var intersection = next as IntersectionLane;
-
-      if (++currentPathIdx >= path.Length)
-        lane = null;
-      else
-        lane = intersection.GetIntersectionExit(path[currentPathIdx], transform);
-    } else
-      lane = next;
-
-    InitLane();
-  }
-
-  private void Move() {
-    if (lane == null)
-      return;
-
-    var currentDistance = Vector3.Distance(laneBeginPos, transform.position);
-
-    if (isTurning) {
-      var dir = Vector3.Lerp(laneBeginFwd, lane.End.forward, currentDistance / laneLength);
-      body.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
+    private void RecordMovement()
+    {
+        var x = Vector3.Distance(lastFramePos, transform.position);
+        Velocity = x > laneCorrectionDistance ? x : 0;
+        lastFramePos = transform.position;
     }
 
-    body.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
+    private void InitLane()
+    {
+        if (Lane == null)
+            return;
 
-    if (Mathf.Abs(laneLength - currentDistance) < 0.1f)
-      AdvanceLane();
-  }
+        if (Lane.End == null)
+        {
+            Lane = null;
+            return;
+        }
 
-  private void Brake() {
-    speed = Mathf.Max(speed - brakingSpeed * Time.fixedDeltaTime, 0);
-  }
+        laneBeginPos = transform.position;
+        laneBeginFwd = transform.forward;
 
-  private void Accelerate() {
-    speed = Mathf.Min(speed + brakingSpeed * Time.fixedDeltaTime, maxSpeed);
-  }
+        laneLength = Vector3.Distance(transform.position, Lane.End.position);
 
-  private void Awake() {
-    body = GetComponent<Rigidbody>();
+        isTurning = transform.forward != Lane.End.forward;
+    }
 
-    if (path == null)
-      path = new IntersectionLane[0];
+    private void AdvanceLane()
+    {
+        transform.position = Lane.End.position;
+        transform.rotation = Lane.End.rotation;
 
-    lastFramePos = transform.position;
-    speed = maxSpeed;
-    InitLane();
-  }
+        var next = Lane.Next;
+        var intersection = next as IntersectionLane;
 
-  private void FixedUpdate() {
-    RecordMovement();
+        Lane = intersection == null ? next : intersection.GetRandomExit(transform);
+        InitLane();
+    }
 
-    if (IsFacingObstacle)
-      Brake();
-    else
-      Accelerate();
+    private void Move()
+    {
+        if (Lane == null)
+            return;
 
-    Move();
-  }
+        var currentDistance = Vector3.Distance(laneBeginPos, transform.position);
+
+        if (isTurning)
+        {
+            var dir = Vector3.Lerp(laneBeginFwd, Lane.End.forward, currentDistance / laneLength);
+            body.MoveRotation(Quaternion.LookRotation(dir, Vector3.up));
+        }
+
+        body.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
+
+        if (Mathf.Abs(laneLength - currentDistance) < 0.1f)
+            AdvanceLane();
+    }
+
+    private void Brake()
+    {
+        speed = Mathf.Max(speed - brakingSpeed * Time.fixedDeltaTime, 0);
+    }
+
+    private void Accelerate()
+    {
+        speed = Mathf.Min(speed + brakingSpeed * Time.fixedDeltaTime, maxSpeed);
+    }
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+
+        lastFramePos = transform.position;
+        speed = maxSpeed;
+        InitLane();
+    }
+
+    private void FixedUpdate()
+    {
+        RecordMovement();
+
+        if (IsFacingObstacle)
+            Brake();
+        else
+            Accelerate();
+
+        Move();
+    }
 }

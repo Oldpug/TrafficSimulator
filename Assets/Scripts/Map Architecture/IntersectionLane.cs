@@ -2,43 +2,41 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[Serializable]
-public class IntersectionExit {
-  public BasicLane[] NextLanes;
+public class IntersectionLane : Lane
+{
+    [SerializeField]
+    public BasicLane[][] Exits;
 
-  public IntersectionLane NextIntersection;
-}
-
-public class IntersectionLane : Lane {
-  [SerializeField]
-  public IntersectionExit[] IntersectionExits;
-
-  public override Transform End {
-    get {
-      return null;
-    }
-  }
-
-  public override Lane Next {
-    get {
-      return null;
+    public override Transform End
+    {
+        get
+        {
+            return null;
+        }
     }
 
-    set { }
-  }
+    public override Lane Next
+    {
+        get
+        {
+            return null;
+        }
 
-  public BasicLane GetIntersectionExit(IntersectionLane nextIntersection, Transform carPosition) {
-    foreach (var i in IntersectionExits) {
-      var randomExit = Random.Range(0, i.NextLanes.Length);
-      if (i.NextIntersection == nextIntersection) {
-        while (carPosition.forward + i.NextLanes[randomExit].End.transform.forward == Vector3.zero)
-          randomExit = Random.Range(0, i.NextLanes.Length);
-
-        return i.NextLanes[randomExit];
-      }
-
+        set { }
     }
 
-    return IntersectionExits[0].NextLanes[0];
-  }
+    public BasicLane GetRandomExit(Transform carPosition)
+    {
+        var exitIdx = Random.Range(0, Exits.Length);
+        var exit = Exits[exitIdx];
+
+        while (carPosition.forward + exit[0].End.transform.forward == Vector3.zero)
+        {
+            exitIdx = Random.Range(0, Exits.Length);
+            exit = Exits[exitIdx];
+        }
+
+        var lane = Random.Range(0, exit.Length);
+        return exit[lane];
+    }
 }
