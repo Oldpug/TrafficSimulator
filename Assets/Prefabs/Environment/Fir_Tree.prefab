@@ -10,6 +10,8 @@ GameObject:
   - component: {fileID: 471828}
   - component: {fileID: 3384114}
   - component: {fileID: 2377290}
+  - component: {fileID: 65783575199533060}
+  - component: {fileID: 114493463971572886}
   m_Layer: 0
   m_Name: Fir_Tree
   m_TagString: Untagged
@@ -24,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 192044}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6932435, y: -0.0010827313, z: 11.111585}
+  m_LocalPosition: {x: -17.885775, y: -0.6370449, z: 11.7037735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -87,3 +89,28 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 192044}
   m_IsPrefabAsset: 1
+--- !u!65 &65783575199533060
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.910246, y: 5.71314, z: 3.7702975}
+  m_Center: {x: -0.03918934, y: 2.8566525, z: -0.0002257824}
+--- !u!114 &114493463971572886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75410c03c4d0d2e49a6a423c3d5a9ce6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interfaceManager: {fileID: 0}
+  StructureTag: 
