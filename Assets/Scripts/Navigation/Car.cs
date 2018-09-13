@@ -3,7 +3,7 @@
 public class Car : MonoBehaviour
 {
     [SerializeField]
-    private float maxSpeed = 2f;
+    private float maxSpeed = 4f;
 
     [SerializeField]
     private float brakingSpeed = 2f;
@@ -16,6 +16,8 @@ public class Car : MonoBehaviour
 
     [SerializeField]
     public Lane Lane;
+
+    public SpawnCache Cache;
 
     private Rigidbody body;
 

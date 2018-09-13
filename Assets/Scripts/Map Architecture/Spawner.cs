@@ -2,6 +2,8 @@
 
 public class Spawner : Lane
 {
+    private static SpawnCache cache;
+
     [SerializeField]
     private Transform end;
 
@@ -10,9 +12,6 @@ public class Spawner : Lane
 
     [SerializeField]
     private float spawnInterval;
-
-    [SerializeField]
-    private GameObject[] cars;
 
     private float timer;
 
@@ -39,14 +38,8 @@ public class Spawner : Lane
 
     private void Awake()
     {
-        if (cars == null)
-            cars = new GameObject[0];
-
-        if (end == null)
-            end = transform;
-
-        if (spawnInterval == 0)
-            spawnInterval = 1f;
+        if (cache == null)
+            cache = FindObjectOfType<SpawnCache>();
     }
 
     private void FixedUpdate()
@@ -55,13 +48,7 @@ public class Spawner : Lane
 
         if (timer >= spawnInterval)
         {
-            var car = Instantiate(cars[Random.Range(0, cars.Length)]);
-
-            car.transform.position = transform.position;
-            car.transform.rotation = transform.rotation;
-
-            car.GetComponent<Car>().Lane = this;
-
+            cache.SpawnCar(this);
             timer = 0;
         }
     }
