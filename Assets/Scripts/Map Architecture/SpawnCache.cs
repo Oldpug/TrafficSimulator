@@ -29,6 +29,7 @@ public class SpawnCache : MonoBehaviour
         car.Lane = spawner;
         car.Cache = this;
 
+        car.Init();
         obj.SetActive(true);
     }
 

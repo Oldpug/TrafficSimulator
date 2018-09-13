@@ -6,13 +6,13 @@ public class Car : MonoBehaviour
     private float maxSpeed = 4f;
 
     [SerializeField]
-    private float brakingSpeed = 2f;
+    private float brakingSpeed = 3f;
 
     [SerializeField]
-    private float viewDistance = 1.5f;
+    private float viewDistance = 4f;
 
     [SerializeField]
-    private float laneCorrectionDistance = 0.01f;
+    private float laneCorrectionDistance = 0.005f;
 
     [SerializeField]
     public Lane Lane;
@@ -61,11 +61,8 @@ public class Car : MonoBehaviour
     private void InitLane()
     {
         if (Lane == null)
-            return;
-
-        if (Lane.End == null)
-        {
-            Lane = null;
+        { 
+            Cache.DespawnCar(this);
             return;
         }
 
@@ -91,9 +88,6 @@ public class Car : MonoBehaviour
 
     private void Move()
     {
-        if (Lane == null)
-            return;
-
         var currentDistance = Vector3.Distance(laneBeginPos, transform.position);
 
         if (isTurning)
@@ -118,13 +112,17 @@ public class Car : MonoBehaviour
         speed = Mathf.Min(speed + brakingSpeed * Time.fixedDeltaTime, maxSpeed);
     }
 
-    private void Awake()
+    public void Init()
     {
-        body = GetComponent<Rigidbody>();
-
         lastFramePos = transform.position;
         speed = maxSpeed;
         InitLane();
+    }
+
+    private void Awake()
+    {
+        body = GetComponent<Rigidbody>();
+        Init();
     }
 
     private void FixedUpdate()
