@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class SimulationControl : MonoBehaviour
 {
-    public Button    PlayPauseButton;
+    public Button PlayPauseButton;
     public Sprite PauseButton;
     public Sprite playButton;
     public bool IsTimeStopped = true;
+    public float x=1;
 
     [SerializeField]
     private Text textTimeScale;
@@ -23,12 +24,13 @@ public class SimulationControl : MonoBehaviour
     {
             if (IsTimeStopped)
             {
-                Time.timeScale = 1.0F;
+                Time.timeScale = x;
                 IsTimeStopped = false;
                 PlayPauseButton.image.overrideSprite = PauseButton;
             }
             else
             {
+                x = Time.timeScale;
                 Time.timeScale = 0.0F;
                 IsTimeStopped = true;
                 PlayPauseButton.image.overrideSprite = playButton;
