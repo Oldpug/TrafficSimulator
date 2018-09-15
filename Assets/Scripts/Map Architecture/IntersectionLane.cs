@@ -2,17 +2,10 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[Serializable]
-public class IntersectionExit
-{
-    [SerializeField]
-    public BasicLane[] Lanes;
-}
-
 public class IntersectionLane : Lane
 {
     [SerializeField]
-    public IntersectionExit[] Exits;
+    public BasicLane[] Exits;
 
     public override Transform End
     {
@@ -34,16 +27,13 @@ public class IntersectionLane : Lane
 
     public BasicLane GetRandomExit(Transform carPosition)
     {
-        var exitIdx = Random.Range(0, Exits.Length);
-        var exit = Exits[exitIdx].Lanes;
+        BasicLane exit;
 
-        while (carPosition.forward + exit[0].End.transform.forward == Vector3.zero)
+        do
         {
-            exitIdx = Random.Range(0, Exits.Length);
-            exit = Exits[exitIdx].Lanes;
-        }
+            exit = Exits[Random.Range(0, Exits.Length)];
+        } while (carPosition.forward + exit.End.transform.forward == Vector3.zero);
 
-        var lane = Random.Range(0, exit.Length);
-        return exit[lane];
+        return exit;
     }
 }

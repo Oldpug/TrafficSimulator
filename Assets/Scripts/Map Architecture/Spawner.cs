@@ -13,6 +13,8 @@ public class Spawner : Lane
 
     private float timer;
 
+    private int carsNearby;
+
     public override Transform End
     {
         get
@@ -38,10 +40,20 @@ public class Spawner : Lane
     {
         timer += Time.fixedDeltaTime;
 
-        if (timer >= spawnInterval)
+        if (timer >= spawnInterval && carsNearby == 0)
         {
             SpawnCache.SpawnCar(this);
             timer = 0;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ++carsNearby;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        --carsNearby;
     }
 }
