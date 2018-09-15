@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 222349405729651462}
   - component: {fileID: 114250077414181974}
   m_Layer: 5
-  m_Name: SpeedText
+  m_Name: CO2EmissionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -898,7 +898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1771506154036562
 GameObject:
   m_ObjectHideFlags: 1
@@ -1170,7 +1170,7 @@ GameObject:
   - component: {fileID: 222408282580488124}
   - component: {fileID: 114207225637078322}
   m_Layer: 5
-  m_Name: NumberSpeedText
+  m_Name: NumberCO2EmissionsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1888,11 +1888,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   averageSpeed: {fileID: 114234202212574818}
-  TimeLeft: {fileID: 0}
   carsStandingStill: {fileID: 114059441565645038}
   totalTimeStill: {fileID: 114437611706288520}
-  SimulationTime: {fileID: 0}
-  CO2Text: {fileID: 0}
+  TotalTime: {fileID: 114888578923651744}
+  CO2Text: {fileID: 114207225637078322}
 --- !u!114 &114192647221918870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2163,7 +2162,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Current speed: '
+  m_Text: 'CO2 emissions:'
 --- !u!114 &114256453795277686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5631,7 +5630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -221.70001, y: 334.1}
+  m_AnchoredPosition: {x: -218.93, y: 334.1}
   m_SizeDelta: {x: 443.4, y: 59.7}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224609470296260050
@@ -6127,7 +6126,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -749.3, y: 51.3}
+  m_AnchoredPosition: {x: -732.65, y: 51.3}
   m_SizeDelta: {x: 443.4, y: 787.7}
   m_Pivot: {x: 0.5, y: 0.5646074}
 --- !u!224 &224960521405380806

@@ -8,21 +8,16 @@ public class Analytics : MonoBehaviour
     private Text averageSpeed;
 
     [SerializeField]
-    private Text TimeLeft;
-
-    [SerializeField]
     private Text carsStandingStill;
 
     [SerializeField]
     private Text totalTimeStill;
 
     [SerializeField]
-    private Text SimulationTime;
+    private Text TotalTime;
 
     [SerializeField]
     private Text CO2Text;
-
-    float totalSum;
 
     float seconds;
     float hour;
@@ -56,7 +51,8 @@ public class Analytics : MonoBehaviour
             foreach (CarAnalytics car in cars) //average speed for all the cars
             {
                 CO2Sum += car.CO2;
-                suma += car.Velocity;
+                suma += car.Velocity*10;
+                Debug.Log(car.Velocity);
                 if (car.Velocity == 0)
                 {
                     stoppedCars++;
@@ -66,18 +62,20 @@ public class Analytics : MonoBehaviour
             }
 
             CarbonEmissions = CO2Sum / seconds;
-            average = totalSum / seconds;
+            average = suma / seconds;
 
             CO2Text.text = CarbonEmissions.ToString("0.##");
             carsStandingStill.text = stoppedCars.ToString(); 
             averageSpeed.text = average.ToString("0.##");
             totalTimeStill.text = totaltimestill.ToString("0.##");
-        }
+
+ 
+}
     }
 
     private void Update()
     {
-        TimeLeft.text = seconds.ToString("0.##");
+        TotalTime.text = seconds.ToString("0.##");
         if (Time.timeScale > 0)
         {
             seconds += Time.deltaTime;
