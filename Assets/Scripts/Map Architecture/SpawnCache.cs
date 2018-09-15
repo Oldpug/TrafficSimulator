@@ -7,8 +7,21 @@ public class SpawnCache : MonoBehaviour
 
     private static Queue<GameObject> carCache;
 
+    private static int carCount;
+
     [SerializeField]
     private GameObject[] carPrefabs;
+    
+    [SerializeField]
+    private int maxCarCount;
+
+    public static int MaxCarCount
+    {
+        get
+        {
+            return instance.maxCarCount;
+        }
+    }
 
     private void Awake()
     {
@@ -28,6 +41,11 @@ public class SpawnCache : MonoBehaviour
 
     public static void SpawnCar(Spawner spawner)
     {
+        if (carCount >= MaxCarCount)
+            return;
+
+        ++carCount;
+
         var cars = instance.carPrefabs;
         var obj = carCache.Count == 0 ? Instantiate(cars[Random.Range(0, cars.Length)]) : carCache.Dequeue();
 
@@ -47,5 +65,7 @@ public class SpawnCache : MonoBehaviour
 
         obj.SetActive(false);
         carCache.Enqueue(obj);
+
+        --carCount; 
     }
 }
