@@ -20,7 +20,7 @@ public class MapStructure : MonoBehaviour {
 
     public void OnMouseDown()
     {
-        interfaceManager.EnableRoadPanel(transform, StructureTag);
+        interfaceManager.ToggleRoadPanel(transform, StructureTag, true);
         if(interfaceManager.buildMode)
         {
             screenPoint = Camera.main.WorldToScreenPoint(transform.position);

@@ -33,10 +33,13 @@ public class InterfaceManager : MonoBehaviour
         Instantiate(road);
     }
 
-    public void EnableRoadPanel(Transform road, string tag)
+    public void ToggleRoadPanel(Transform road, string tag, bool value)
     {
-        roadCustomizationPanel.gameObject.SetActive(true);
-        roadCustomizationPanel.SelectRoad(road);
+        if (!buildMode)
+            return;
+        roadCustomizationPanel.gameObject.SetActive(value);
+        if(value)
+            roadCustomizationPanel.SelectRoad(road);
     }
 
     public void ToggleBuildMode()
@@ -44,6 +47,7 @@ public class InterfaceManager : MonoBehaviour
         cameraControl.SwitchMode();
         if(buildMode)
         {
+            ToggleRoadPanel(transform, "interface", false);
             buildPanel.SetActive(false);
         }
         else
