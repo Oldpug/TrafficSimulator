@@ -3,41 +3,49 @@ using UnityEngine;
 
 public class SpawnCache : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] cars;
+    private static SpawnCache instance;
 
-    private Queue<GameObject> cache;
+    private static Queue<GameObject> carCache;
+
+    [SerializeField]
+    private GameObject[] carPrefabs;
 
     private void Awake()
     {
-        cache = new Queue<GameObject>();
+        if (instance == null)
+        {
+            instance = this;
+            carCache = new Queue<GameObject>();
+        }
+        else
+            Destroy(gameObject);
     }
 
-    public void Clear()
+    public static void Clear()
     {
-        cache.Clear();
+        carCache.Clear();
     }
 
-    public void SpawnCar(Spawner spawner)
+    public static void SpawnCar(Spawner spawner)
     {
-        var obj = cache.Count == 0 ? Instantiate(cars[Random.Range(0, cars.Length)]) : cache.Dequeue();
+        var cars = instance.carPrefabs;
+        var obj = carCache.Count == 0 ? Instantiate(cars[Random.Range(0, cars.Length)]) : carCache.Dequeue();
 
         obj.transform.position = spawner.transform.position;
         obj.transform.rotation = spawner.transform.rotation;
 
         var car = obj.GetComponent<Car>();
         car.Lane = spawner;
-        car.Cache = this;
 
         car.Init();
         obj.SetActive(true);
     }
 
-    public void DespawnCar(Car car)
+    public static void DespawnCar(Car car)
     {
         var obj = car.gameObject;
 
         obj.SetActive(false);
-        cache.Enqueue(obj);
+        carCache.Enqueue(obj);
     }
 }

@@ -2,8 +2,6 @@
 
 public class Spawner : Lane
 {
-    private static SpawnCache cache;
-
     [SerializeField]
     private Transform end;
 
@@ -36,19 +34,13 @@ public class Spawner : Lane
         }
     }
 
-    private void Awake()
-    {
-        if (cache == null)
-            cache = FindObjectOfType<SpawnCache>();
-    }
-
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
 
         if (timer >= spawnInterval)
         {
-            cache.SpawnCar(this);
+            SpawnCache.SpawnCar(this);
             timer = 0;
         }
     }

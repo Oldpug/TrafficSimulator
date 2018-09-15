@@ -17,8 +17,6 @@ public class Car : MonoBehaviour
     [SerializeField]
     public Lane Lane;
 
-    public SpawnCache Cache;
-
     private Rigidbody body;
 
     private float speed;
@@ -62,7 +60,7 @@ public class Car : MonoBehaviour
     {
         if (Lane == null)
         { 
-            Cache.DespawnCar(this);
+            SpawnCache.DespawnCar(this);
             return;
         }
 
