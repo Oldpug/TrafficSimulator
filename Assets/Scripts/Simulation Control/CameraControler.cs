@@ -69,7 +69,11 @@ public class CameraControler : MonoBehaviour {
 
                 Quaternion QT = Quaternion.Euler(localRotation.y, localRotation.x, 0);
                 cameraRotationPivot.rotation = Quaternion.Lerp(cameraRotationPivot.rotation, QT, orbitDampening);
-                
+                if (Input.GetKey(KeyCode.Q))
+                    cameraMovementPivot.Translate(cameraMovementPivot.up * -1 * movementSpeedRatio);
+
+                if (Input.GetKey(KeyCode.E))
+                    cameraMovementPivot.Translate(cameraMovementPivot.up * movementSpeedRatio);
             }
         }
 
@@ -85,11 +89,7 @@ public class CameraControler : MonoBehaviour {
         if(Input.GetKey(KeyCode.S))
             cameraMovementPivot.Translate(forwardMovementDirection * -1 * movementSpeedRatio);
 
-        if (Input.GetKey(KeyCode.Q))
-            cameraMovementPivot.Translate(cameraMovementPivot.up * -1 * movementSpeedRatio);
-
-        if (Input.GetKey(KeyCode.E))
-            cameraMovementPivot.Translate(cameraMovementPivot.up * movementSpeedRatio);
+        
 
         if (cameraMovementPivot.position.y < 0)
             cameraMovementPivot.position = new Vector3(cameraRotationPivot.position.x, lowestMapPoint, cameraRotationPivot.position.z);
