@@ -3,13 +3,13 @@
 public class Car : MonoBehaviour
 {
     [SerializeField]
-    private float maxSpeed = 4f;
+    private float maxSpeed = 6f;
 
     [SerializeField]
-    private float brakingSpeed = 3f;
+    private float brakingSpeed = 8f;
 
     [SerializeField]
-    private float viewDistance = 4f;
+    private float viewDistance = 6f;
 
     [SerializeField]
     private float laneCorrectionDistance = 0.005f;
@@ -31,7 +31,9 @@ public class Car : MonoBehaviour
 
     private Vector3 lastFramePos;
 
-    public float Velocity { get; private set; }
+    public float Velocity;
+
+    public float TraveledDistance;
 
     public bool IsFacingObstacle
     {
@@ -76,6 +78,8 @@ public class Car : MonoBehaviour
     {
         transform.position = Lane.End.position;
         transform.rotation = Lane.End.rotation;
+
+        TraveledDistance += Vector3.Distance(laneBeginPos, transform.position);
 
         var next = Lane.Next;
         var intersection = next as IntersectionLane;
