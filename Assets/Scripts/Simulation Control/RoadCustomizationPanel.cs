@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class RoadCustomizationPanel : MonoBehaviour
 {
     Transform selectedObject;
+    Spawner selectedSpawner;
 
     [SerializeField]
     InputField scaleX;
@@ -15,13 +16,29 @@ public class RoadCustomizationPanel : MonoBehaviour
     [SerializeField]
     InputField rotationY;
 
+    [SerializeField]
+    InputField spawnRate;
 
-    public void SelectRoad(Transform obj)
+    [SerializeField]
+    GameObject spawnerGroup;
+
+
+    public void SelectRoad(Transform obj, string tag)
     {
         selectedObject = obj;
         scaleX.text = obj.localScale.x.ToString();
         scaleZ.text = obj.localScale.z.ToString();
         rotationY.text = obj.rotation.y.ToString();
+        if(tag == "spawner")
+        {
+            selectedSpawner = obj.GetComponentInChildren<Spawner>();
+            spawnerGroup.SetActive(true);
+            spawnRate.text = selectedSpawner.SpawnInterval.ToString();
+        }
+        else
+        {
+            spawnerGroup.SetActive(false);
+        }
     }
 
     public void ChangeXScale(string value)
@@ -51,13 +68,24 @@ public class RoadCustomizationPanel : MonoBehaviour
         }
     }
 
+    public void ChangeSpawnRate(string value)
+    {
+        float convertedValue;
+        if (Single.TryParse(value, out convertedValue))
+        {
+            selectedSpawner.SpawnInterval = convertedValue;
+        }
+    }
+
     public void DeleteObject()
     {
         Destroy(selectedObject.gameObject);
         gameObject.SetActive(false);
+        spawnerGroup.SetActive(false);
     }
     public void HideWindow()
     {
         gameObject.SetActive(false);
+        spawnerGroup.SetActive(false);
     }
 }

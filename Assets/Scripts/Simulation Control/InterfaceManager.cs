@@ -39,7 +39,7 @@ public class InterfaceManager : MonoBehaviour
             return;
         roadCustomizationPanel.gameObject.SetActive(value);
         if(value)
-            roadCustomizationPanel.SelectRoad(road);
+            roadCustomizationPanel.SelectRoad(road, tag);
     }
 
     public void ToggleBuildMode()

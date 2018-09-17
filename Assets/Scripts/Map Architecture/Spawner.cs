@@ -9,7 +9,7 @@ public class Spawner : Lane
     private Lane next;
 
     [SerializeField]
-    private float spawnInterval;
+    public float SpawnInterval;
 
     private float timer;
 
@@ -40,7 +40,7 @@ public class Spawner : Lane
     {
         timer += Time.fixedDeltaTime;
 
-        if (timer >= spawnInterval && carsNearby == 0)
+        if (timer >= SpawnInterval && carsNearby == 0)
         {
             SpawnCache.SpawnCar(this);
             timer = 0;
