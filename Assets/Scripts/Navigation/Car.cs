@@ -3,7 +3,7 @@
 public class Car : MonoBehaviour
 {
     [SerializeField]
-    public float maxSpeed = 6f;
+    public float MaxSpeed = 6f;
 
     [SerializeField]
     private float brakingSpeed = 8f;
@@ -111,13 +111,13 @@ public class Car : MonoBehaviour
 
     private void Accelerate()
     {
-        speed = Mathf.Min(speed + brakingSpeed * Time.fixedDeltaTime, maxSpeed);
+        speed = Mathf.Min(speed + brakingSpeed * Time.fixedDeltaTime, MaxSpeed);
     }
 
     public void Init()
     {
         lastFramePos = transform.position;
-        speed = maxSpeed;
+        speed = MaxSpeed;
         InitLane();
     }
 

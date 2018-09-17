@@ -26,7 +26,7 @@ public class CarAnalytics : MonoBehaviour {
             min = engine * 0.2f;
             max = engine * 5;
             if (car.Velocity == 0) return engine * 0.2f;
-            return Mathf.Lerp(max, min, car.Velocity / car.maxSpeed);
+            return Mathf.Lerp(max, min, car.Velocity / car.MaxSpeed);
         }
     }
 
