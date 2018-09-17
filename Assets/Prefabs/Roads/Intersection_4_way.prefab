@@ -635,7 +635,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201806933529236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children:
   - {fileID: 4565929501390598}
@@ -1272,6 +1272,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interfaceManager: {fileID: 0}
+  StructureTag: 
 --- !u!114 &114700790931935726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1298,13 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1530a44dbceb424db0c2abce31174ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IntersectionExits:
-  - NextLanes:
-    - {fileID: 114524156397609816}
-    - {fileID: 114081978754602810}
-    - {fileID: 114886636972862714}
-    - {fileID: 114141701015631740}
-    NextIntersection: {fileID: 114786755452871296}
+  Exits: []
 --- !u!114 &114886636972862714
 MonoBehaviour:
   m_ObjectHideFlags: 1
