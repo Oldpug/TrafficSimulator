@@ -919,10 +919,6 @@ MonoBehaviour:
       switchTimer: 2
       cooldown: 0
       isHidden: 0
-    - Entrances: []
-      switchTimer: 2
-      cooldown: 0
-      isHidden: 0
 --- !u!114 &114711906898466420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -935,4 +931,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interfaceManager: {fileID: 0}
-  StructureTag: 
+  StructureTag: trafficLights

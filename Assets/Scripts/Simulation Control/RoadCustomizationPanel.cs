@@ -6,6 +6,7 @@ public class RoadCustomizationPanel : MonoBehaviour
 {
     Transform selectedObject;
     Spawner selectedSpawner;
+    TrafficLights selectedTrafficLights;
 
     [SerializeField]
     InputField scaleX;
@@ -20,7 +21,16 @@ public class RoadCustomizationPanel : MonoBehaviour
     InputField spawnRate;
 
     [SerializeField]
+    InputField northAndSouthTrafficLights;
+
+    [SerializeField]
+    InputField EastAndWestTrafficLights;
+
+    [SerializeField]
     GameObject spawnerGroup;
+
+    [SerializeField]
+    GameObject trafficLightsGroup;
 
 
     public void SelectRoad(Transform obj, string tag)
@@ -34,10 +44,22 @@ public class RoadCustomizationPanel : MonoBehaviour
             selectedSpawner = obj.GetComponentInChildren<Spawner>();
             spawnerGroup.SetActive(true);
             spawnRate.text = selectedSpawner.SpawnInterval.ToString();
+            trafficLightsGroup.SetActive(false);
+        }
+        else if(tag == "trafficLights")
+        {
+            selectedTrafficLights = obj.GetComponentInChildren<TrafficLights>();
+            trafficLightsGroup.SetActive(true);
+            spawnerGroup.SetActive(false);
+            var entrances = selectedTrafficLights.GetEntrances();
+            northAndSouthTrafficLights.text = entrances[0].switchTimer.ToString();
+            if(entrances.Length > 1)
+            EastAndWestTrafficLights.text = entrances[1].switchTimer.ToString();
         }
         else
         {
             spawnerGroup.SetActive(false);
+            trafficLightsGroup.SetActive(false);
         }
     }
 
@@ -77,15 +99,36 @@ public class RoadCustomizationPanel : MonoBehaviour
         }
     }
 
+    public void ChangeNorthSouth(string value)
+    {
+        float convertedValue;
+        if (Single.TryParse(value, out convertedValue))
+        {
+            selectedTrafficLights.GetEntrances()[0].switchTimer = convertedValue;
+        }
+    }
+
+    public void ChangeWestEast(string value)
+    {
+        float convertedValue;
+        if (Single.TryParse(value, out convertedValue))
+        {
+            if(selectedTrafficLights.GetEntrances().Length > 1)
+                selectedTrafficLights.GetEntrances()[1].switchTimer = convertedValue;
+        }
+    }
+
     public void DeleteObject()
     {
         Destroy(selectedObject.gameObject);
         gameObject.SetActive(false);
         spawnerGroup.SetActive(false);
+        trafficLightsGroup.SetActive(false);
     }
     public void HideWindow()
     {
         gameObject.SetActive(false);
         spawnerGroup.SetActive(false);
+        trafficLightsGroup.SetActive(false);
     }
 }
