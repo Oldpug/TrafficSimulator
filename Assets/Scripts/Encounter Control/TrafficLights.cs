@@ -23,8 +23,7 @@ public class EntrancesArray
 [System.Serializable]
 public class EntranceGroup
 {
-    [SerializeField]
-    private EntrancesArray[] entrance;
+    public EntrancesArray[] entrance;
     private int currentGroup = 0;
 
     public void SetTimers()
@@ -65,5 +64,10 @@ public class TrafficLights : MonoBehaviour
     void Update()
     {
         entrances.UpdateTimers();
+    }
+
+    public EntrancesArray[] GetEntrances()
+    {
+        return entrances.entrance;
     }
 }
