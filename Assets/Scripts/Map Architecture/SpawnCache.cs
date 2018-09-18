@@ -11,7 +11,9 @@ public class SpawnCache : MonoBehaviour
 
     [SerializeField]
     private GameObject[] carPrefabs;
-    
+
+    public Analytics analytics;
+
     [SerializeField]
     private int maxCarCount;
 
@@ -49,10 +51,14 @@ public class SpawnCache : MonoBehaviour
 
         car.Init();
         obj.SetActive(true);
+
+        instance.analytics.AddCar(car);
     }
 
     public static void DespawnCar(Car car)
     {
+        instance.analytics.RemoveCar(car);
+
         var obj = car.gameObject;
 
         obj.SetActive(false);
