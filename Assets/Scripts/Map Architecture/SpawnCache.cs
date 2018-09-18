@@ -5,7 +5,7 @@ public class SpawnCache : MonoBehaviour
 {
     private static SpawnCache instance;
 
-    private static Queue<GameObject> carCache;
+    private static ConcurrentQueue<GameObject> carCache;
 
     private static int carCount;
 
@@ -15,20 +15,12 @@ public class SpawnCache : MonoBehaviour
     [SerializeField]
     private int maxCarCount;
 
-    public static int MaxCarCount
-    {
-        get
-        {
-            return instance.maxCarCount;
-        }
-    }
-
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            carCache = new Queue<GameObject>();
+            carCache = new ConcurrentQueue<GameObject>();
         }
         else
             Destroy(gameObject);
@@ -41,13 +33,13 @@ public class SpawnCache : MonoBehaviour
 
     public static void SpawnCar(Spawner spawner)
     {
-        if (carCount >= MaxCarCount)
+        if (carCount >= instance.maxCarCount)
             return;
 
         ++carCount;
 
         var cars = instance.carPrefabs;
-        var obj = carCache.Count == 0 ? Instantiate(cars[Random.Range(0, cars.Length)]) : carCache.Dequeue();
+        var obj = carCache.IsEmpty ? Instantiate(cars[Random.Range(0, cars.Length)]) : carCache.Dequeue();
 
         obj.transform.position = spawner.transform.position;
         obj.transform.rotation = spawner.transform.rotation;
@@ -66,6 +58,6 @@ public class SpawnCache : MonoBehaviour
         obj.SetActive(false);
         carCache.Enqueue(obj);
 
-        --carCount; 
+        --carCount;
     }
 }

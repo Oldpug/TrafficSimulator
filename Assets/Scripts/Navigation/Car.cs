@@ -6,10 +6,10 @@ public class Car : MonoBehaviour
     public float MaxSpeed = 6f;
 
     [SerializeField]
-    private float brakingSpeed = 8f;
+    private float brakingSpeed = float.MaxValue;
 
     [SerializeField]
-    private float viewDistance = 6f;
+    private float viewDistance = float.MaxValue;
 
     [SerializeField]
     private float laneCorrectionDistance = 0.005f;
@@ -18,6 +18,8 @@ public class Car : MonoBehaviour
     public Lane Lane;
 
     private Rigidbody body;
+
+    private bool isInitialized;
 
     private float speed;
 
@@ -39,13 +41,15 @@ public class Car : MonoBehaviour
     {
         get
         {
+            var pos = transform.position + new Vector3(0, 1, 0);
+
             RaycastHit hit;
-            var isFacingObstacle = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);
+            var isFacingObstacle = Physics.Raycast(pos, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);
 
             if (isFacingObstacle)
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                Debug.DrawRay(pos, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             else
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+                Debug.DrawRay(pos, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
 
             return isFacingObstacle;
         }
@@ -119,23 +123,26 @@ public class Car : MonoBehaviour
         lastFramePos = transform.position;
         speed = MaxSpeed;
         InitLane();
+        isInitialized = true;
     }
 
     private void Awake()
     {
         body = GetComponent<Rigidbody>();
-        Init();
     }
 
     private void FixedUpdate()
     {
-        RecordMovement();
+        if (isInitialized)
+        {
+            RecordMovement();
 
-        if (IsFacingObstacle)
-            Brake();
-        else
-            Accelerate();
+            if (IsFacingObstacle)
+                Brake();
+            else
+                Accelerate();
 
-        Move();
+            Move();
+        }
     }
 }
