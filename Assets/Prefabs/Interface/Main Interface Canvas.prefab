@@ -1067,7 +1067,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1757341729944734
 GameObject:
   m_ObjectHideFlags: 1
@@ -3348,7 +3348,8 @@ MonoBehaviour:
         m_MethodName: SpawnRoad
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgument: {fileID: 114198363284882660, guid: 419e0b5f313713d48ac7b9c4510dfa1e,
+            type: 2}
           m_ObjectArgumentAssemblyTypeName: MapStructure, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5148,6 +5149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319f76cf798fa014098cc38860ad6b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  analytics: {fileID: 114147202155982676}
   carPrefabs:
   - {fileID: 1140041351730466, guid: 2e9a3b62463715e488aab7b679ec3133, type: 2}
   maxCarCount: 100

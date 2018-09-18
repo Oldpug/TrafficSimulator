@@ -44,6 +44,9 @@ public class InterfaceManager : MonoBehaviour
 
     public void ToggleBuildMode()
     {
+        if (Time.timeScale > 0)
+            return;
+
         cameraControl.SwitchMode();
         if(buildMode)
         {
