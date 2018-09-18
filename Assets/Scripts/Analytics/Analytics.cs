@@ -55,7 +55,6 @@ public class Analytics : MonoBehaviour
             {
                 CO2Sum += car.CO2;
                 sumaDinAcestFrame += car.Velocity*10;
-                Debug.Log(car.Velocity);
                 if (car.Velocity == 0)
                 {
                     stoppedCars++;

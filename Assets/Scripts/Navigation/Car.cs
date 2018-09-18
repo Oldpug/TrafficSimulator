@@ -2,19 +2,14 @@
 
 public class Car : MonoBehaviour
 {
-    [SerializeField]
-    public float MaxSpeed = 6f;
+    public float MaxSpeed = 6;
 
-    [SerializeField]
-    private float brakingSpeed = float.MaxValue;
+    private float brakingSpeed = 8;
 
-    [SerializeField]
-    private float viewDistance = float.MaxValue;
+    private float viewDistance = 6;
 
-    [SerializeField]
     private float laneCorrectionDistance = 0.005f;
 
-    [SerializeField]
     public Lane Lane;
 
     private Rigidbody body;
@@ -41,7 +36,7 @@ public class Car : MonoBehaviour
     {
         get
         {
-            var pos = transform.position + new Vector3(0, 1, 0);
+            var pos = transform.position + transform.forward + new Vector3(0, 0.5f, 0);
 
             RaycastHit hit;
             var isFacingObstacle = Physics.Raycast(pos, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);

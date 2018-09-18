@@ -10,9 +10,10 @@ public class SpawnCache : MonoBehaviour
     private static int carCount;
 
     [SerializeField]
-    private GameObject[] carPrefabs;
+    private Analytics analytics;
 
-    public Analytics analytics;
+    [SerializeField]
+    private GameObject[] carPrefabs;
 
     [SerializeField]
     private int maxCarCount;

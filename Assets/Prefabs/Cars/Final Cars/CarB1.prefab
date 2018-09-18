@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 114090131700320988}
   - component: {fileID: 54680688845823984}
   - component: {fileID: 65466197775246702}
+  - component: {fileID: 114521846575085910}
   m_Layer: 0
   m_Name: CarB1
   m_TagString: Untagged
@@ -488,3 +489,15 @@ MonoBehaviour:
   Lane: {fileID: 0}
   Velocity: 0
   TraveledDistance: 0
+--- !u!114 &114521846575085910
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1548163957877586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326a7e1cab52bf24186078b4931a08dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: 1

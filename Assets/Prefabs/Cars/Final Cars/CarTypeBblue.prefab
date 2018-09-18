@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 65880827850609196}
   - component: {fileID: 54748638187691206}
   - component: {fileID: 114726920631288072}
+  - component: {fileID: 114301759991302032}
   m_Layer: 0
   m_Name: CarTypeBblue
   m_TagString: Untagged
@@ -473,6 +474,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.966402, y: 1.9, z: 4.4171944}
   m_Center: {x: 0.0053300858, y: 0.97, z: -0.025606155}
+--- !u!114 &114301759991302032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140041351730466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326a7e1cab52bf24186078b4931a08dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engine: 1
 --- !u!114 &114726920631288072
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,9 +497,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28295dc02333a6b46abe31ed93dcfb36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
+  MaxSpeed: 6
   brakingSpeed: 3
   viewDistance: 4
   laneCorrectionDistance: 0.005
   Lane: {fileID: 0}
-  Cache: {fileID: 0}
+  Velocity: 0
+  TraveledDistance: 0
