@@ -29,25 +29,29 @@ public class Analytics : MonoBehaviour
     float totaltimestill;
     private List<CarAnalytics> cars;
     float CarbonEmissions;
+    private WaitForSeconds waitForSeconds = new WaitForSeconds(1);
 
-   /* public InputField HourText;
-    public InputField MinutesText;
-    public InputField SecondsText;*/
+    private Coroutine coroutine;
 
     private void Start()
     {
+        Init();
+    }
+
+    public void Init() {
         cars = FindObjectsOfType<CarAnalytics>().ToList();
-        StartCoroutine(Watch());
-        /*HourText.text = hour.ToString();
-        MinutesText.text = minutes.ToString();
-        SecondsText.text = seconds.ToString();*/
+        coroutine = StartCoroutine(Watch());
+    }
+
+    public void StopCoroutine() {
+        StopCoroutine(coroutine);
     }
 
     private IEnumerator Watch()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1);
+            yield return waitForSeconds;
             float sumaDinAcestFrame = 0;
             float CO2Sum = 0;
             int stoppedCars = 0;
@@ -68,10 +72,10 @@ public class Analytics : MonoBehaviour
             sumaDeLaInceputulLumii += sumaDinAcestFrame;
             average = sumaDeLaInceputulLumii / timpDeLaInceputulLumii;
 
-            CO2Text.text = CarbonEmissions.ToString("0.##");
+            CO2Text.text = CarbonEmissions.ToString("0.## ");
             carsStandingStill.text = stoppedCars.ToString(); 
-            averageSpeed.text = average.ToString("0.##");
-            totalTimeStill.text = totaltimestill.ToString("0.##");
+            averageSpeed.text = average.ToString("0.## m/s");
+            totalTimeStill.text = totaltimestill.ToString("0.## s");
 
 
 }
@@ -83,12 +87,10 @@ public class Analytics : MonoBehaviour
 
     private void Update()
     {
-        TotalTime.text = timpDeLaInceputulLumii.ToString("0.##");
+        TotalTime.text = timpDeLaInceputulLumii.ToString("0 s");
         if (Time.timeScale > 0)
         {
             timpDeLaInceputulLumii += Time.deltaTime;
         }
-
     }
-
 }

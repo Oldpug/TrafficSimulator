@@ -5151,7 +5151,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   analytics: {fileID: 114147202155982676}
   carPrefabs:
+  - {fileID: 1548163957877586, guid: 1caa12464be014044aff9648af954331, type: 2}
   - {fileID: 1140041351730466, guid: 2e9a3b62463715e488aab7b679ec3133, type: 2}
+  - {fileID: 1252084937516946, guid: d424869732dfa42409274bd2ebfb011a, type: 2}
   maxCarCount: 100
 --- !u!114 &114932931230995604
 MonoBehaviour:

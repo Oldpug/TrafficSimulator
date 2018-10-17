@@ -16,6 +16,9 @@ public class SimulationControl : MonoBehaviour
     [SerializeField]
     private Text textTimeScale;
 
+    [SerializeField]
+    private Analytics analytics;
+
     public void Awake()
     {
         Time.timeScale = 0;
@@ -33,6 +36,11 @@ public class SimulationControl : MonoBehaviour
             Time.timeScale = x;
             IsTimeStopped = false;
             PlayPauseButton.image.overrideSprite = PauseButton;
+
+            if (!analytics.gameObject.activeSelf)
+              analytics.gameObject.SetActive(true);
+
+            analytics.Init();
         }
         else
         {
@@ -40,12 +48,13 @@ public class SimulationControl : MonoBehaviour
             Time.timeScale = 0.0F;
             IsTimeStopped = true;
             PlayPauseButton.image.overrideSprite = playButton;
+            analytics.StopCoroutine();
         }
     }
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void SpeedUp()
