@@ -34,6 +34,12 @@ public class SpawnCache : MonoBehaviour
         carCache.Clear();
     }
 
+    public static void DespawnAllCars()
+    {
+        foreach (var car in FindObjectsOfType<Car>())
+            DespawnCar(car);
+    }
+
     public static void SpawnCar(Spawner spawner)
     {
         if (carCount >= instance.maxCarCount)

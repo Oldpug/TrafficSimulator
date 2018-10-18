@@ -48,13 +48,14 @@ public class SimulationControl : MonoBehaviour
             Time.timeScale = 0.0F;
             IsTimeStopped = true;
             PlayPauseButton.image.overrideSprite = playButton;
-            analytics.StopCoroutine();
+            analytics.StopWatchCoroutine();
         }
     }
 
     public void Restart()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SpawnCache.DespawnAllCars();
+        analytics.Reset();
     }
 
     public void SpeedUp()

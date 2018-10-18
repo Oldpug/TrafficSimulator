@@ -7,44 +7,60 @@ using UnityEngine.UI;
 public class Analytics : MonoBehaviour
 {
     [SerializeField]
-    private Text averageSpeed;
+    private Text averageSpeedUI;
 
     [SerializeField]
-    private Text carsStandingStill;
+    private Text stillCarsUI;
 
     [SerializeField]
-    private Text totalTimeStill;
+    private Text stillTimeUI;
 
     [SerializeField]
-    private Text TotalTime;
+    private Text totalTimeUI;
 
     [SerializeField]
-    private Text CO2Text;
+    private Text carbonEmissionsUI;
 
-    float timpDeLaInceputulLumii;
-    float sumaDeLaInceputulLumii;
-    float hour;
-    float minutes;
-    float average;
-    float totaltimestill;
     private List<CarAnalytics> cars;
-    float CarbonEmissions;
     private WaitForSeconds waitForSeconds = new WaitForSeconds(1);
 
     private Coroutine coroutine;
+
+    float averageSpeed;
+    float stillTime;
+    float carbonEmissions;
+
+    float totalTime;
+    float totalDistanceTraveled;
+    float carbonEmissionsTotal;
 
     private void Start()
     {
         Init();
     }
 
-    public void Init() {
+    public void Init()
+    {
         cars = FindObjectsOfType<CarAnalytics>().ToList();
         coroutine = StartCoroutine(Watch());
     }
 
-    public void StopCoroutine() {
+    public void StopWatchCoroutine()
+    {
         StopCoroutine(coroutine);
+    }
+
+    public void Reset()
+    {
+        averageSpeed = 0;
+        stillTime = 0;
+        carbonEmissions = 0;
+
+        totalDistanceTraveled = 0;
+        totalTime = 0;
+        carbonEmissionsTotal = 0;
+
+        UpdateUI(stoppedCars: 0);
     }
 
     private IEnumerator Watch()
@@ -52,45 +68,55 @@ public class Analytics : MonoBehaviour
         while (true)
         {
             yield return waitForSeconds;
-            float sumaDinAcestFrame = 0;
-            float CO2Sum = 0;
+
+            float totalDistanceTraveledFrame = 0;
+            float carbonEmissionsFrame = 0;
             int stoppedCars = 0;
-            foreach (CarAnalytics car in cars) //average speed for all the cars
+
+            foreach (var car in cars)
             {
-                CO2Sum += car.CO2;
-                sumaDinAcestFrame += car.Velocity*10;
+                carbonEmissionsFrame += car.CO2;
+                totalDistanceTraveledFrame += car.Velocity * 10;
+
                 if (car.Velocity == 0)
                 {
                     stoppedCars++;
-                    totaltimestill++;                  
+                    stillTime++;
                 }
-
             }
 
-            CarbonEmissions = CO2Sum / timpDeLaInceputulLumii;
+            carbonEmissionsTotal += carbonEmissionsFrame;
+            carbonEmissions = carbonEmissionsTotal / totalTime;
 
-            sumaDeLaInceputulLumii += sumaDinAcestFrame;
-            average = sumaDeLaInceputulLumii / timpDeLaInceputulLumii;
+            totalDistanceTraveled += totalDistanceTraveledFrame;
+            averageSpeed = totalDistanceTraveled / totalTime;
 
-            CO2Text.text = CarbonEmissions.ToString("0.## ");
-            carsStandingStill.text = stoppedCars.ToString(); 
-            averageSpeed.text = average.ToString("0.## m/s");
-            totalTimeStill.text = totaltimestill.ToString("0.## s");
-
-
-}
+            UpdateUI(stoppedCars);
+        }
     }
 
+    public void AddCar(Car c)
+    {
+        cars.Add(c.GetComponent<CarAnalytics>());
+    }
 
-    public void AddCar(Car c) { cars.Add(c.GetComponent<CarAnalytics>()); }
-    public void RemoveCar(Car c) { cars.Remove(c.GetComponent<CarAnalytics>()); }
+    public void RemoveCar(Car c)
+    {
+        cars.Remove(c.GetComponent<CarAnalytics>());
+    }
+
+    private void UpdateUI(int stoppedCars)
+    {
+        carbonEmissionsUI.text = carbonEmissions.ToString("0.## ");
+        stillCarsUI.text = stoppedCars.ToString();
+        averageSpeedUI.text = averageSpeed.ToString("0.## m/s");
+        stillTimeUI.text = stillTime.ToString("0.## s");
+
+        totalTimeUI.text = totalTime.ToString("0 s");
+    }
 
     private void Update()
     {
-        TotalTime.text = timpDeLaInceputulLumii.ToString("0 s");
-        if (Time.timeScale > 0)
-        {
-            timpDeLaInceputulLumii += Time.deltaTime;
-        }
+        totalTime += Time.deltaTime;
     }
 }
