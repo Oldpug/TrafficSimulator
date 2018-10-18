@@ -36,11 +36,17 @@ public class Spawner : Lane
         }
     }
 
+    public void Reset()
+    {
+        carsNearby = 0;
+        timer = 0;
+    }
+
     private void FixedUpdate()
     {
         timer += Time.fixedDeltaTime;
 
-        if (timer >= SpawnInterval && carsNearby == 0)
+        if (timer >= SpawnInterval && carsNearby <= 0)
         {
             SpawnCache.SpawnCar(this);
             timer = 0;

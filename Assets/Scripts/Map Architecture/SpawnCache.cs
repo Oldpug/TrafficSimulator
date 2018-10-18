@@ -38,6 +38,9 @@ public class SpawnCache : MonoBehaviour
     {
         foreach (var car in FindObjectsOfType<Car>())
             DespawnCar(car);
+
+        foreach (var spawner in FindObjectsOfType<Spawner>())
+            spawner.Reset();
     }
 
     public static void SpawnCar(Spawner spawner)
