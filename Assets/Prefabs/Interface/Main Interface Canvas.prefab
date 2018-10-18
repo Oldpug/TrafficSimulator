@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 224015343676811140}
   - component: {fileID: 222010108295118178}
   - component: {fileID: 114412319374270478}
-  - component: {fileID: 114272531804112818}
+  - component: {fileID: 114685769334265498}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -2377,11 +2377,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95d2b7c840bc93a47ba7e8ef55af1fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  averageSpeed: {fileID: 114234202212574818}
-  carsStandingStill: {fileID: 114059441565645038}
-  totalTimeStill: {fileID: 114437611706288520}
-  TotalTime: {fileID: 114888578923651744}
-  CO2Text: {fileID: 114207225637078322}
+  averageSpeedUI: {fileID: 114234202212574818}
+  stillCarsUI: {fileID: 114059441565645038}
+  stillTimeUI: {fileID: 114437611706288520}
+  totalTimeUI: {fileID: 114888578923651744}
+  carbonEmissionsUI: {fileID: 114207225637078322}
 --- !u!114 &114192647221918870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2649,7 +2649,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0 m/s
 --- !u!114 &114239929421354698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2721,6 +2721,7 @@ MonoBehaviour:
   IsTimeStopped: 1
   x: 1
   textTimeScale: {fileID: 114631792257948046}
+  analytics: {fileID: 114147202155982676}
 --- !u!114 &114250077414181974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2847,58 +2848,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114272531804112818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1556866671181662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 114412319374270478}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114245614816381156}
-        m_MethodName: Restart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114272603236125026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3500,7 +3449,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0 s
 --- !u!114 &114446720269696992
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4166,6 +4115,58 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114685769334265498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1556866671181662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 114412319374270478}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114245614816381156}
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114689144656296688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5044,7 +5045,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0 s
 --- !u!114 &114896350089532896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5154,7 +5155,7 @@ MonoBehaviour:
   - {fileID: 1548163957877586, guid: 1caa12464be014044aff9648af954331, type: 2}
   - {fileID: 1140041351730466, guid: 2e9a3b62463715e488aab7b679ec3133, type: 2}
   - {fileID: 1252084937516946, guid: d424869732dfa42409274bd2ebfb011a, type: 2}
-  maxCarCount: 100
+  maxCarCount: 50
 --- !u!114 &114932931230995604
 MonoBehaviour:
   m_ObjectHideFlags: 1

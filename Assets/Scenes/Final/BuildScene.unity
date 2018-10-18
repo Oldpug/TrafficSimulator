@@ -339,25 +339,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114245614816381156, guid: 6d6c2b0e48e1b02458bd499e3e1bdea5,
-        type: 2}
-      propertyPath: analytics
-      value: 
-      objectReference: {fileID: 730896791}
-    - target: {fileID: 114927433819600608, guid: 6d6c2b0e48e1b02458bd499e3e1bdea5,
-        type: 2}
-      propertyPath: maxCarCount
-      value: 50
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d6c2b0e48e1b02458bd499e3e1bdea5, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &730896791 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114147202155982676, guid: 6d6c2b0e48e1b02458bd499e3e1bdea5,
-    type: 2}
-  m_PrefabInternal: {fileID: 681807727}
-  m_Script: {fileID: 11500000, guid: 95d2b7c840bc93a47ba7e8ef55af1fe1, type: 3}
 --- !u!1 &1579255987
 GameObject:
   m_ObjectHideFlags: 0
