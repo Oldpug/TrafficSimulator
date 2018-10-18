@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   end: {fileID: 4804139652121210}
   next: {fileID: 0}
-  SpawnInterval: 0
+  SpawnInterval: 5
 --- !u!114 &114340147781070964
 MonoBehaviour:
   m_ObjectHideFlags: 1

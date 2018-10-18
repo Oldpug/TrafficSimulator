@@ -9,7 +9,7 @@ public class Spawner : Lane
     private Lane next;
 
     [SerializeField]
-    public float SpawnInterval;
+    public float SpawnInterval = 5;
 
     private float timer;
 
