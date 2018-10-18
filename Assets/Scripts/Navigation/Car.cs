@@ -28,6 +28,8 @@ public class Car : MonoBehaviour
 
     private Vector3 lastFramePos;
 
+    private QueryTriggerInteraction queryTriggerInteraction = QueryTriggerInteraction.Collide;
+
     public float Velocity;
 
     public float TraveledDistance;
@@ -39,7 +41,7 @@ public class Car : MonoBehaviour
             var pos = transform.position + transform.forward + new Vector3(0, 0.5f, 0);
 
             RaycastHit hit;
-            var isFacingObstacle = Physics.Raycast(pos, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, QueryTriggerInteraction.Collide);
+            var isFacingObstacle = Physics.Raycast(pos, transform.TransformDirection(Vector3.forward), out hit, viewDistance, ~0, queryTriggerInteraction);
 
             if (isFacingObstacle)
                 Debug.DrawRay(pos, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
@@ -84,6 +86,8 @@ public class Car : MonoBehaviour
         var intersection = next as IntersectionLane;
 
         Lane = intersection == null ? next : intersection.GetRandomExit(transform);
+        queryTriggerInteraction = intersection == null ? QueryTriggerInteraction.Collide : QueryTriggerInteraction.Ignore;
+
         InitLane();
     }
 
