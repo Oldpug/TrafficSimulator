@@ -1,6 +1,7 @@
 # TrafficSimulator
 
 Traffic simulator written in Unity that was made as part of the 2018 edition of the [Discover Your Passion for IT](https://dpit.ro/) contest.
+The project is not maintained anymore, this is an archive of the GitLab repository that was used during development.
 
 GitHub profiles of other team members:
 
