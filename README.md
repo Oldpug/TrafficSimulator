@@ -1,11 +1,15 @@
 # TrafficSimulator
 
-Traffic simulator written in Unity that was made as part of the 2018 edition of the [Discover Your Passion for IT](https://dpit.ro/) contest.
-The project is not maintained anymore, this is an archive of the GitLab repository that was used during development.
+A sandbox traffic simulator powered by Unity Engine.
 
-GitHub profiles of other team members:
+Users can create maps, drag and drop entry points, roads and intersections, and then run the simulation to generate statistics about congestion and CO2 emissions.
 
-* [Cristian Anitei](https://github.com/sYntaxHub)
+This project was developed as part of the 2018 edition of the [Discover Your Passion for IT](https://dpit.ro/) contest, and is not maintained anymore.
+This repository is an archive of the GitLab repository that was used during development.
+
+## Developed in collaboration with:
+
+* [Cristian Anitei](https://github.com/aniteicristi)
 * [Radu Imbuzan](https://github.com/RaduImb)
 
 ## License
